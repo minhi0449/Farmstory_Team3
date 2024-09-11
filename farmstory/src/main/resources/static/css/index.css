@@ -1,0 +1,585 @@
+/* layout style */
+/* reset */
+*{margin: 0; padding:0; font-family: "Inter", sans-serif; font-size: 12px; font-weight: 400;}
+html{color:#111; position:relative;}
+html, body{height:100%;}
+body{font-size:12px; line-height:18px; font-family: 'Noto Sans KR', sans-serif;}
+a, address, blockquote, br, fieldset, legend, label, form, input, select, textarea, button, cite, code, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, div, iframe, ul, ol, li, hr, img {margin: 0; padding: 0;}
+a{color:#111; text-decoration: none;}
+img{border:none; vertical-align: top;}
+ul, ol{list-style:none;}
+address{font-style: normal;}
+
+/* hyper link */
+a, a:link, a:visited, a:active, a:hover{text-decoration: none; color: inherit;}
+ 
+#wrapper{
+    width: 100%;
+    height: auto;
+}
+/* #header */
+#header{width: 100%; height: 142px; position: relative;}
+.headerIn{width: 980px;  margin:0 auto; position: relative;}
+
+/* header 위 점 */
+.topline {top: 0;}
+
+/* logo */
+.logo{position: absolute; top:22px; left: 50%; margin-left: -95px;}
+
+/* utill (HOME|로그인|회원가입|고객센터) */
+.utill{display: flex; position: absolute; top: 17px; right: 0.2px;}
+.utill li::before{content: "ㅣ";}
+.utill li:nth-child(1):before{display: none;} /* HOME 왼쪽 | 삭제 */
+
+/* h_txt (3만원이상 무료배송·팜카드 10%적립) */
+.h_txt{position: absolute; top:59px; right: 0;}
+
+/* gnb */
+.gnb{display: flex; position: absolute; top: 92px;}
+
+.gnb li{background: url('../images/head_menu_line.png') no-repeat;}
+.gnb li a{display: block; float: left; width: 196px; height: 50px; object-fit: none; box-sizing: border-box;}
+.gnb li a img{box-sizing: border-box; margin-top: 10px;}
+
+/* 30% 이미지 */
+.gnb li:nth-child(2){position: relative;}
+.gnb li .discount{position: absolute; top: -22px; right: 61px;}
+
+/* gnb 마우스 오버시 (기존 이미지 숨김)*/
+.gnb li a:hover img{display: none;}
+
+/* gnb 마우스 오버시 공통값*/
+.gnb li a:hover{background-repeat: no-repeat; background-position: 0 10px;}
+
+/* gnb 마우스 오버시 개별값*/
+.gnb li:nth-of-type(1) a:hover{background-image: url('../images/head_menu1_ov.png');}
+.gnb li:nth-of-type(2) a:hover{background-image: url('../images/head_menu2_ov.png');}
+.gnb li:nth-of-type(2) a:hover .discount{display: block;}
+.gnb li:nth-of-type(3) a:hover{background-image: url('../images/head_menu3_ov.png');}
+.gnb li:nth-of-type(4) a:hover{background-image: url('../images/head_menu4_ov.png');}
+.gnb li:nth-of-type(5) a:hover{background-image: url('../images/head_menu5_ov.png');}
+
+
+
+
+/*!* header *!*/
+/*#header{*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    box-sizing: border-box;*/
+/*}*/
+/*.headerIn{*/
+/*    width: 980px;*/
+/*    height: 92px;*/
+/*    margin: 0 auto;*/
+/*}*/
+
+/*.logo{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    box-sizing: border-box;*/
+/*    margin: 0 auto;*/
+/*    width: 190px;*/
+/*    height: 64px;*/
+/*    align-items: center;*/
+/*}*/
+/*.logo img{*/
+/*    margin-top: 20px;*/
+/*}*/
+
+
+/*!* utill *!*/
+/*.utill{*/
+
+/*}*/
+
+/*.headerIn .utill{*/
+/*    box-sizing: border-box;*/
+/*    width: 980px;*/
+/*    height: 14px;*/
+/*    margin-right: 3px;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-size: 12px;*/
+/*    line-height: 15px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: end;*/
+/*    position: absolute;*/
+/*    top: 14px;*/
+/*    margin: 0 auto;*/
+
+
+
+/*}*/
+/*.utill li{}*/
+/*.utill li a{margin-left: 1px;}*/
+
+/*!* h_txt *!*/
+/*.h_txt{    */
+/*    box-sizing: border-box;*/
+/*    width: 100%;*/
+/*    height: 15px;*/
+/*}*/
+/*.h_txt img{*/
+/*    float: right;*/
+/*    justify-content: right;*/
+/*}*/
+
+
+/*!* header nav *!*/
+
+/*.gnb_wrap{*/
+/*    width: 980px;*/
+/*    height: 50px;*/
+/*    margin: 0 auto;*/
+/*}*/
+/*header .gnb >li {*/
+/*    float: left;*/
+/*    width: 20%;*/
+/*    height: 50px;*/
+/*    box-sizing: border-box*/
+/*}*/
+/*header .gnb > li a{*/
+/*    background: url(../images/head_menu_line.png) no-repeat; */
+/*    background-position: cover;*/
+/*}*/
+/*header .gnb > li >a{*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: 50px;*/
+/*    text-align: center;*/
+/*    line-height: 50px;*/
+/*    padding-top: 10px;*/
+/*    box-sizing: border-box;*/
+
+/*}*/
+
+
+
+/*header .gnb li:nth-child(2){*/
+/*    box-sizing: border-box;*/
+/*    position: relative;*/
+/*}*/
+/*header .gnb > li .badge{*/
+/*    position: absolute;*/
+/*    box-sizing: border-box;*/
+/*    left:94px;*/
+/*    top: -13px;*/
+/*}*/
+
+
+/*!* main *!*/
+
+/*main{*/
+/*    width: 100%;*/
+/*    height: 1063px;*/
+/*    box-sizing: border-box;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+main > section{
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    position: relative;
+   
+}
+
+
+
+main > .sub_bg {
+    width: 980px;
+    height: 312px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+
+
+main > .sub_bg {
+    box-sizing: border-box;
+    background-attachment: fixed;
+    position: relative
+
+}
+
+main  .mainbntit{
+    position: absolute;
+    z-index: 2;    
+    background-attachment: fixed;
+    left: 40px;
+    top: 50px;
+    box-sizing: border-box;
+}
+
+main .bannerbg{
+    width: 230px;
+    height: 312px;
+    position: absolute;
+    z-index: 2;    
+    background-attachment: fixed;
+    box-sizing: border-box;
+    right: 0;
+
+}
+
+main .main_banner{
+    position: absolute;
+    z-index: 4;
+    background-attachment: fixed;
+    box-sizing: border-box;
+    width: 230px;
+    height: 312px;
+    left: 750px;
+    top: 0px;
+}
+
+main .main_banner .bannerimg{
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+}
+
+main .main_banner .bannertit{
+    box-sizing: border-box;
+    position: absolute;
+    top: 31px;
+    left: 10px;
+} 
+
+main .main_banner .bannertxt{
+    box-sizing: border-box;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+
+
+
+/* mainin  */
+.mainIn{
+    width: 980px;
+    height: auto;
+    margin: 0 auto;
+}
+
+
+/* 메인 타이틀 */
+.maintit{
+    margin-top: 20px;
+    margin-bottom: 14px;
+}
+
+.market{
+    width: 100%;
+    text-align: center;
+    align-self: center ;
+    
+}
+
+.market article{
+    display: inline-block;
+    width: 155px;
+    height: 236px;
+    border: 1px solid #EEEEEE;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.market article:last-child{
+    margin-right: 0px;
+}
+
+.market article img{
+    width: 120px;
+    height: 120px;
+    
+}
+
+.mtxt{
+    margin-top: 11px;
+}
+
+.mtxt span{
+    font-size: 12px;
+    color: #777777;
+    height: 14px;
+    width: 24.2px;
+    line-height: 14px;
+    margin-bottom: 11px;
+
+}
+
+.mxtx .prodname{
+    margin-top: 11px;
+    font-size: 12px;
+}
+
+
+
+
+/* ad  */
+
+.ad{
+    width: 980px;
+    height: 74px;
+    overflow: hidden;
+    overflow: hidden;
+    display: inline-flex;
+    margin-top: 10px;
+
+}
+
+
+.ad  > article {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 490px;
+    height: 74px;
+    flex-wrap: nowrap;
+
+}
+
+.ad >article > a{
+    display: inline-flex;
+    box-sizing: border-box;
+    width: 187px;
+    height: 40px;
+    margin-top: 16px;
+    margin-left: 16px;
+
+}
+
+.ad .ad1{
+    background: url(../images/main_banner_sub1_bg.jpg);
+}
+.ad .ad2{
+    background: url(../images/main_banner_sub2_bg.jpg);
+}
+
+
+
+
+/* crop */
+
+.crop{
+    width: 980px;
+    height: 186px;
+    overflow: hidden;
+    overflow: hidden;
+    display: inline-flex;
+    margin-top: 10px;
+}
+
+.crop article{
+    width: 326px;
+    height: 186px;
+}
+
+.crop a{
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 17px;
+}
+
+.crop > article > img {
+    float: left;
+    margin-right: 14.84px;
+    margin-top: 4px;
+}
+
+
+/* notice section */
+
+.notice{
+    width: 980px;
+    height: 154px;
+    box-sizing: border-box;
+    background: url(../images/main_cs_top_line.png) no-repeat;
+    background-position-y: top;
+    background-position: top;
+    overflow: hidden;
+    display: inline-flex;
+    margin-top: 10px;
+    margin-bottom:10px ;
+}
+/*   */
+.notice .cs{
+    width: 386px;
+    height: 124px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    background: url(../images/main_sub2);
+    margin-top: 18px;
+
+}
+
+.announcement{
+    width: 354px;
+    height: 132px;
+}
+
+.ntitle{
+    display: block;
+    margin-bottom: 16px;
+}
+
+
+
+
+.cs > .cstxt{
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: row;
+    width: 386px;
+    height: 54px;
+    margin-bottom: 16px;
+    
+}
+.cstxt > img:nth-child(1){
+    width: 45px;
+    height: 42px;
+    margin-right: 16px;
+}
+.cstxt > img:nth-child(2){
+    width: 121px;
+    height: 40px;
+    margin-right: 16px;
+
+} 
+
+.cs > p{
+    font: 10.88px;
+    height: 54px;
+    width: 140.39px;
+}
+.cslink{
+    margin-bottom:12px ;
+}
+
+
+
+
+/* account */
+.account{
+    width: 230px;
+    height: 132px;
+    border-left: 1px solid #D7D7D7;
+    border-right: 1px solid #D7D7D7;
+    margin-top: 18px;    
+    color: #666666;
+
+}
+
+.account .ntitle{
+    margin-left: 17px;
+    height: 14px;
+
+}
+
+.account .accounttxt{
+    margin-left: 17px;
+
+}
+
+/* announcement */
+.announcement{
+    width: 355px;
+    height: 132px;
+    margin-top: 12px;    
+    margin-left: 10px;
+    margin-bottom: 14px;
+    color: #6A6A6A;
+}
+
+.announcement .ntitle{
+    height: 14px;
+    margin-top: 6px;
+   
+}
+.announcement .ntable{
+    font-size: 11px;
+    margin-left: 8px;
+    width: 305px;
+    height: 88px;
+    
+}
+
+
+
+/* footer  */
+footer{
+    width: 100%;
+    height: auto;
+    margin-top: 20;
+}
+
+footer .ftlogo {
+   float: left;
+   margin-right: 70px;
+}
+
+.footerIn{
+    width: 980px;
+    height: 130px;
+    margin: 0 auto;
+    background: url(../images/footer_top_line.png) no-repeat;
+    background-position: top;
+}
+
+.footerIn *{
+    display: inline;
+    font-size: 12px;
+
+}
+
+.companyft {
+    display: block;
+    padding-top: 27px;
+}
+
+.ceoft{
+   display: block;
+
+}
+
+.Copy{
+    display: block;
+    padding-top: 0px;
+}
+
+.companyft li::after{
+    content: " /";
+
+}
+.companyft li:last-child::after{
+    content: "";
+}
+
+.ceoft li::after{
+    content: " /";
+}
+.ceoft li:last-child:after{
+    content: "";
+}
+
+
+
+
+
+/* copyright */
+.Copy {
+    text-align: justify;
+    padding-left: 243px; 
+    font-size: 12px; /* Font size */
+    color: #777; /* Text color */
+    font-weight: bold;
+}

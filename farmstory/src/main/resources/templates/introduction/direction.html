@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/images/fav.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/introduction/direction.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>길찾기</title>
+   
+</head>
+<body>
+    <div id="wrapper">
+
+        <th:block th:include ="./include/header.html"/>
+ 
+        <main id="main cf">
+            <section class="mainIn cf">
+                <div class="sub_bg">
+                    <img th:src="@{/images/sub_top_tit1.png}" alt="COMMUNITY" class="sub_tit">
+                </div>
+                <aside class="aside">
+                    <div class="sidebar">
+                        <div class="aside_cate">
+                            <img th:src="@{/images/sub_aside_cate1_tit.png}" alt="커뮤니티">
+                        </div><!-- .aside_cate -->
+                        <div class="aside_bg">
+                            <ul class="cate_lnb">
+                                <li> <a th:href="@{/introduction/introduction}" class="lnb1">인삿말</a></li>
+                                <li> <a th:href="@{/introduction/direction}" class="lnb2">찾아오시는길</a></li>
+                          
+                            </ul><!-- .cate_lnb -->
+                        </div><!-- .aside_bg -->
+                    </div><!-- .sidebar -->
+                </aside><!-- .aside -->
+                
+                <article class="article">
+                    <div class="articleIn">
+                        <nav>
+                            <h2>
+                                <img th:src="@{/images/sub_nav_tit_cate1_tit2.png}" alt="찾아오시는길">
+                            </h2>
+                            <p class="location">
+                                <img th:src="@{/images/sub_page_nav_ico.gif}" alt="메뉴">
+                                <span>HOME </span>
+                                <span>팜스토리소개 </span>
+                                <strong>찾아오시는길</strong> 
+                            </p>
+                        </nav>
+                        <div class="direction cf">
+                            <ul>
+                                <li>
+                                    <span class="txt1">팜스토리</span><br>
+                                    <p>
+                                        주소 : 경기도 이천시 잘한다구 신난다동 123<br>
+                                        전화 : 010-2345-7890  
+                                    </p>
+                                </li>
+                                <li>
+                                    <span class="txt1">찾아오시는 길</span>
+                                    <div class="map">
+                                        map
+                                    </div>
+                                </li>
+                            </ul>  
+                        </div><!--direction -->
+                    </div><!-- .articleIn -->
+                </article><!-- .article -->
+            </section>
+        </main><!-- #main -->
+        <!-- footer -->
+        <th:block th:include ="./include/footer.html"/>
+
+
+    </div>
+    
+</body>
+</html>

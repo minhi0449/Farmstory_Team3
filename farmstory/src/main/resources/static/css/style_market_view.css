@@ -1,0 +1,253 @@
+
+
+/* main */
+
+.article h3:nth-of-type(1) {
+    width: 64.2px;
+    height: 17px;
+    margin-top: 41px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+}
+
+.product_info {
+    width: 762px;
+    height: 270px;
+}
+
+.product_info > img {
+    width: 240px;
+    height: 240px;
+    margin-top: 11px;
+}
+
+.product_details > table{
+    width: 457.19px;
+    height: 200px;
+    border-top: 2px solid #E7E7E7;
+    border-bottom: 2px solid #E7E7E7;
+    margin-top: -240px;
+    margin-left: 304px;
+}
+
+.product_details > table tr {
+    width: 453.19px;
+    height: 29.75px;
+}
+
+.product_details > table th {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+
+}
+
+.product {
+    font-family: Inter;
+    font-size: 11.06px;
+    font-weight: 400;
+    line-height: 13.39px;
+    text-align: left;
+
+}
+
+.deliver {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+
+}
+
+.deliver > span {
+    color: #777777;
+}
+
+.sell_price {
+    font-family: Inter;
+    font-size: 10.69px;
+    font-weight: 400;
+    line-height: 12.93px;
+    text-align: left;
+
+}
+
+input:focus{outline: none;}
+
+.count > input {
+    width: 64px;
+    height: 19px;
+    border-radius: 2.5px 2.5px 2.5px 2.5px;
+    border: 1px 0px 0px 0px;
+    border: 1px solid #767676;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left; 
+}
+
+/* input 증가 감소 없애기  */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+}
+
+
+.sum {
+    font-family: Inter;
+    font-size: 9.94px;
+    font-weight: 700;
+    line-height: 12.03px;
+    text-align: left;
+    color: #C20A0A;
+
+}
+
+.add_to_cart {
+    width: 100px;
+    height: 40px;
+    display: block;
+    background: #769B0A;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF !important;
+    margin-left: 559px;
+    margin-top: 10px;
+}
+
+.buy_now {
+    width: 100px;
+    height: 40px;
+    display: block;
+    background: #960D1A;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF !important;
+    margin-left: 662px;
+    margin-top: -40px;
+}
+
+
+.article h3:nth-of-type(2) {
+    width: 64.2px;
+    height: 17px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+    margin-top: 13px;
+}
+
+.sample > img {
+    width: 750px;
+    height: 1387px;
+    margin-top: 16px;
+}
+
+.article h3:nth-of-type(3) {
+    width: 64.2px;
+    height: 17px;
+    margin-top: 15px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+}
+
+.sms {
+    width: 450px;
+    height: 14px;
+    margin-top: 14px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+}
+
+.article h3:nth-of-type(4) {
+    width: 74px;
+    height: 17px;
+    margin-top: 13px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-align: left;
+    
+}
+
+.table_change {
+    width: 762px;
+    height: 150px;
+    margin-top: 13.5px;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.table_change tr:nth-of-type(1) > th {
+    width: 217.42px;
+    height: 93px;
+    border: 1px 1px 1px 0px;
+    padding: 10.5px 10px 10.5px 10.5px;
+    border-top: 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    border-left: none; 
+}
+
+.table_change tr:nth-of-type(1) > td {
+    width: 544.58px;
+    height: 93px;
+    padding: 10.5px 10px 10.5px 10.5px;
+    border: 1px 0px 1px 1px;
+    border-top: 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    border-right: none; 
+    padding-left: 24px;
+}
+
+.table_change tr:nth-of-type(2) > th {
+    width: 217.42px;
+    height: 57px;
+    border: 1px 1px 1px 0px;
+    padding: 10.5px 10px 10.5px 10.5px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    border-left: none; 
+}
+
+.table_change tr:nth-of-type(2) > td {
+    width: 544.58px;
+    height: 57px;
+    padding: 10.5px 10px 10.5px 10.5px;
+    border: 1px 0px 1px 1px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #CCCCCC;
+    border-right: none; 
+    padding-left: 24px;
+    
+}

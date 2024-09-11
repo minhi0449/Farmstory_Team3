@@ -1,0 +1,45 @@
+
+/* 장보기 > 장바구니 */
+
+/* 테이블 타이틀(h3) - 장바구니 전체(10) */
+.tb_tit {height: 14px; line-height: 14.52px; letter-spacing: 0; margin: 41px 0 12px 0;}
+
+/* 테이블 */
+.tb1 {width: 762px; height: 332px; border-top: 1px solid #111; box-sizing: border-box; border-collapse: collapse; border-bottom: 1px solid #111;}
+
+/* th 영역 */
+.tb1 th {height: 38px; box-sizing: border-box; background-color: #E5ECEF; line-height: 14.52px; color: #000;}
+
+/* td 영역 */
+.tb1 td {text-align: center; box-sizing: border-box; height: 85px; border-top: 1px solid #f0f0f0; color: #777;}
+
+.tb1 td:nth-of-type(4) {color: #111; font-size: 11.06px; font-weight: 600;}
+.tb1 td:nth-of-type(7) {font-size: 9.75px;}
+.tb1 td:nth-of-type(8) {font-size: 9.75px;}
+.tb1 td:nth-of-type(9) {font-size: 10.13px;}
+
+.tb1 strong {font-weight: bold; color: #000;}
+.tb1 .td_first {height: 38px; color: #888;}
+.tb1 td > img {width: 60px;height: 71%;}
+
+/* 선택삭제 버튼 */
+.btnSD {margin-top: 10px; width: 60px; height: 29px; color: #fff; background-color: #960d1a; line-height: 14.52px; border: none;}
+
+/* 주문 테이블 div 영역 */
+.order_final {float: right; padding: 7px; margin-top: 10.5px;
+    width: 305px; height: 262px; box-sizing: border-box; border: 1px solid #d7d7d7; margin-right: 39px;}
+
+/* 주문 테이블 tb2 영역 */
+.tb2 {width: 291px; height: 201px; box-sizing: border-box; border-top: 1px solid #111; border-bottom: 1px solid #111;}
+.tb2 > tr {height: 26px;}
+.tb2 td:nth-child(1) {padding-left: 10px;}
+
+.tb2 tr:nth-of-type(3) > td:nth-child(2)
+,.tb2 tr:nth-of-type(4) > td:nth-child(2)
+,.tb2 tr:nth-of-type(5) > td:nth-child(2)
+,.tb2 tr:nth-of-type(6) > td:nth-child(2){font-size: 10.5px;}
+
+.tb2 tr:nth-of-type(7) > td:nth-child(2){font-size: 9.19px; color: #c20a0a; font-weight: 700;}
+
+/* 주문하기 버튼 영역 */
+.btn_order {margin-top: 10px; width: 291px; height: 37px; background-color: #960d1a; color: #fff; border: none;}

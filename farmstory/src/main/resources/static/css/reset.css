@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+*{margin: 0; padding:0; font-family: "Inter", sans-serif; font-size: 12px; font-weight: 400;}
+html{color:#111; position:relative;}
+html, body{height:100%; }
+body{font-size:12px; line-height:18px; font-family: 'Noto Sans KR', sans-serif;}
+a, address, blockquote, br, fieldset, legend, label, form, input, select, textarea, button, cite, code, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, div, iframe, ul, ol, li, hr, img {margin: 0; padding: 0;}
+a{color:#111; text-decoration: none;}
+img{border:none; vertical-align: top;}
+ul, ol{list-style:none;}
+address{font-style: normal;}
+/* clearfix */
+.cf{}
+.cf::after {content: ""; display: block; clear: both;}
+
+/* hyper link */
+a, a:link, a:visited, a:active, a:hover{text-decoration: none; color: inherit;}
+
+/* input outline */
+input:active{outline: none;}
+input:focus{outline: none;}
+

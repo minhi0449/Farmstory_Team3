@@ -1,0 +1,50 @@
+/* header, footer 제외 공통부분 = common */
+
+/* main */
+
+#main{width: 100%; height: auto; position: relative;}
+.mainIn{width: 980px; margin:0 auto; }
+.cf::after {content: ""; display: block; clear: both;}
+
+
+/* 서브 이미지 */
+.sub_bg{position: relative; width: 980px; height: 184px; background: url('../images/sub_top_bg.jpg') no-repeat center;}
+.sub_bg .sub_tit{position: absolute; top: 137px; left: 10px; height: 37px;}
+
+/* aside 영역 (왼쪽) -------------------------------------------------- */
+.aside{position: relative; float: left; width: 179px; box-sizing: border-box;
+    width: 176px; height: 650px; background: url('../images/sub_aside_bg_line.png') right 0 no-repeat;}
+.aside_cate{
+    width: 103px; height: 45px; margin:16px 0 0 16px;
+    /* position: absolute; top: 16px; left: 16px;  */ /* 포지션으로 위치 잡을 경우 위치 값 */
+}
+.aside_bg{width: 176px; height: 650px; background: url('../images/sub_aside_bg_lnb.png') 0 20px no-repeat;}
+
+/* lnb */
+
+.aside_bg .cate_lnb{}
+.aside_bg .cate_lnb li{} 
+
+.aside_bg .cate_lnb li a{
+    position: absolute; left: 0; top:107px; 
+    text-indent: -9999px; display: block; width: 176px; height: 29px; 
+    background: url('../images/sub_cate2_lnb1.png') no-repeat;
+}
+.aside_bg .cate_lnb li a:hover{background: url('../images/sub_cate2_lnb1_ov.png') no-repeat; }
+
+/* article 영역 (오른쪽)  ---------------------------------------------- */
+.article{position: relative; float:left; width: 802px; height: auto;}
+.articleIn{width: 802px; margin-left: 40px;}
+
+/* article 타이틀 */
+h2{margin-top: 43px;}
+h2::after{display: block; content: ""; clear: both; width: 762px; height: 1px; background: #c2c2c2; margin-top: 5px;}
+
+/* location */
+.location{position: absolute; top: 0; right:0; float:right; margin-top:51px; height: 17px; font-family: Inter; font-size: 12px; font-weight: 400; line-height: 14.52px; text-align: left;}
+.location img{margin-top: 5px;}
+.location span{color:#0a0101;}
+.location span:after{display: inline-block; content: ">" ; clear: both;}
+
+/* location 현재페이지 강조 */
+.location strong{color:#91ba15; font-weight: 700;}

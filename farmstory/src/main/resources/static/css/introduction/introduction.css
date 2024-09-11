@@ -1,0 +1,28 @@
+.aside_bg .cate_lnb1 li .lnb1{
+    position: absolute; left: 0; top:107px; 
+    text-indent: -9999px; display: block; width: 176px; height: 29px; 
+    background: url('../../images/sub_cate1_lnb1.png') no-repeat; 
+}
+
+.aside_bg .cate_lnb1 li .lnb2{
+    position: absolute; left: 0; top:137px; 
+    text-indent: -9999px; display: block; width: 176px; height: 29px; 
+    background: url('../../images/sub_cate1_lnb2.png') no-repeat; 
+}
+
+.aside_bg .cate_lnb1 li .lnb1:hover{background: url('../../images/sub_cate1_lnb1_ov.png') no-repeat; }
+
+.aside_bg .cate_lnb1 li .lnb2:hover{background: url('../../images/sub_cate1_lnb2_ov.png') no-repeat; }
+
+.txt {
+    width: 760px;
+    color: #666;
+    letter-spacing: -0.4px;
+    line-height: 20px;
+}
+
+.content {margin-top: 40px;}
+
+.txt strong{color:#91BA15; font-weight: bold;}
+
+.txt{margin: 14px 0 0 0; }

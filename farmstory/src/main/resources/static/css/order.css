@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+/* 장보기 > 주문하기 order.html */
+
+/* 테이블 타이틀(h3) - 주문상춤 전체(10) */
+.tb_tit {height: 14px; line-height: 14.52px; letter-spacing: 0; margin: 41px 0 12px 0;}
+
+/* 테이블 */
+.tb1 {width: 762px; height: 332px; border-top: 1px solid #111; box-sizing: border-box; border-collapse: collapse; border-bottom: 1px solid #111;}
+
+/* th 영역 */
+.tb1 th {height: 38px; box-sizing: border-box; background-color: #E5ECEF; line-height: 14.52px; color: #000;}
+
+/* td 영역 */
+.tb1 td {text-align: center; box-sizing: border-box; height: 85px; border-top: 1px solid #f0f0f0; color: #777;}
+
+.tb1 td:nth-of-type(4) {color: #111; font-size: 11.06px; font-weight: 600;}
+.tb1 td:nth-of-type(7) {font-size: 9.75px;}
+.tb1 td:nth-of-type(8) {font-size: 9.75px;}
+.tb1 td:nth-of-type(9) {font-size: 10.13px;}
+
+.tb1 strong {font-weight: bold; color: #000;}
+.tb1 .td_first {height: 38px; color: #888;}
+.tb1 td > img {width: 60px;height: 71%;}
+
+/* ---------------------------------------------------------- */
+
+/* 주문 테이블 div 영역 */
+.order_info{margin-top: 10px; float: left; width: 447.19px; box-sizing: border-box; margin-bottom: 0.5px;}
+.order_info::after{display: block; content: ""; clear: both;}
+.order_info .order_tit{margin-bottom: 12px;}
+.order_tb{table-layout: fixed; border-top: 1px solid #be0808; text-align: left; width: 447.19px; height: 440.75px; box-sizing: border-box; border-collapse: collapse; font-family: Inter; font-size: 12px; font-weight: 400; line-height: 14.52px; text-align: left;}
+
+/* 주문정보 입력 테이블 */
+.order_tb tr {
+    width: 105.19px; 
+    height: 41px;
+    border-bottom: 1px solid #d7d7d7;}
+.order_tb tr th{width: 105.19px; height: 41px; box-sizing: border-box; background: #f7f7f7; padding-left: 10px;}
+.order_tb tr td{width: 342px; box-sizing: border-box; padding-left: 10px;}
+.order_tb tr td input[type="text"]{border: 1px solid #d7d7d7; height: 20px; text-indent: 1px;}
+
+/* 포인트 사용 */
+.order_tb .use{height: 59px}
+
+/* 사용가능 2,000 */
+.order_tb .use_point > div {display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: center; align-items: center; box-sizing: border-box; margin: 1.5px 0 0 0 ; width: 332px; text-align: left; align-items: flex-start;}
+.order_tb .point{float:left;}
+.order_tb .point_btn{float:left; display: block; width: 52px; line-height: 21px; height: 21px; border: 1px solid #767676;  border-radius: 2.5px; background: #efefef; text-align: center; margin: -1px 0 0 3px;}
+
+/* 배송주소 */
+.order_tb .delivery_addr{height: 85.75px;}
+.order_tb .post_sch{float: left;}
+.order_tb .post_sch_btn{float: left; margin-left: 4px;}
+.order_tb .addr1, .addr2 {width: 100%; margin-top: 2px;}
+
+/* 결제방법 + 체크박스 */
+/* Adjust the checkbox input */
+input[type="checkbox"] {-webkit-appearance: none; -moz-appearance: none; appearance: none; margin:0px; padding-right: 0; width: 13px; height: 13px; background-color: #fff; border: 1px solid #ccc; border-radius: 50%;}
+
+.checklb::after {margin-left: 2px; font-size: 12px; vertical-align: middle; line-height: normal; display: inline-block;}
+
+/* Adjust the checkbox input */
+input[type="checkbox"] {-webkit-appearance: none; -moz-appearance: none; appearance: none; margin:0px; padding-right: 0;             
+    width: 13px; height: 13px; background-color: #fff; border: 1px solid #ccc; border-radius: 50%;}
+.checklb::after { margin-left: 2px; font-size: 12px; vertical-align: middle; line-height: normal; display: inline-block;}
+input[type="checkbox"]:checked {background-color: #0075ff;border: none;}
+input[type="checkbox"]:checked::before {content: '✓'; display: block; color: white; border-radius: 50%; font-size: 10px; text-align: center; line-height: 9px;}
+
+/* 결제방법 */
+.order_tb input[type="textarea"]{width: 100%; height: 62px; border: 1px solid #d7d7d7; }
+
+.order_tb .etc{height: 87px;}
+
+/* 주문 테이블 div 영역 */
+.order_final {float: right; padding: 7px; margin-top: 10.5px;
+    width: 305px; height: 262px; box-sizing: border-box; border: 1px solid #d7d7d7; margin-right: 39px;}
+
+/* 주문 테이블 tb2 영역 */
+.tb2 {width: 291px; height: 201px; box-sizing: border-box; border-top: 1px solid #111; border-bottom: 1px solid #111;}
+.tb2 > tr {height: 26px;}
+.tb2 td:nth-child(1) {padding-left: 10px;}
+
+.tb2 tr:nth-of-type(3) > td:nth-child(2)
+,.tb2 tr:nth-of-type(4) > td:nth-child(2)
+,.tb2 tr:nth-of-type(5) > td:nth-child(2)
+,.tb2 tr:nth-of-type(6) > td:nth-child(2){font-size: 10.5px;}
+
+.tb2 tr:nth-of-type(7) > td:nth-child(2){font-size: 9.19px; color: #c20a0a; font-weight: 700;}
+
+/* 주문하기 버튼 영역 */
+.btn_order {margin-top: 10px; width: 291px; height: 37px; background-color: #960d1a; color: #fff; border: none;}

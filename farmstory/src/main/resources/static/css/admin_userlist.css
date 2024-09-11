@@ -1,0 +1,413 @@
+/* layout style */
+/* reset */
+*{margin: 0; padding:0; font-family: "Inter", sans-serif; font-size: 12px; font-weight: 700;}
+html{color:#111; position:relative;}
+html, body{height:100%;}
+body{font-size:12px; line-height:18px; font-family: 'Noto Sans KR', sans-serif;}
+a, address, blockquote, br, fieldset, legend, label, form, input, select, textarea, button, cite, code, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, div, iframe, ul, ol, li, hr, img {margin: 0; padding: 0;}
+a{color:#111; text-decoration: none;}
+img{border:none; vertical-align: top;}
+ul, ol{list-style:none;}
+address{font-style: normal;}
+
+/* hyper link */
+a, a:link, a:visited, a:active, a:hover{text-decoration: none; color: inherit;}
+
+/* wrapper */
+#wrapper{
+    width: 100%;
+    height: auto;
+
+}
+
+header{
+    width: 100%;
+    height: auto;
+    background: url(../adminImages/admin_bg.jpg);
+    background-position: bottom;
+}
+
+.headerIn{
+    width: 980px;
+    height: 60px;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+}
+
+.top img{
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+/* utill */
+.utill{
+    float: right;
+    margin-top: -32px;
+}
+
+.utill ul{
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: row;
+    color: white;
+}
+.utill ul li::after{
+    content: " |";
+}
+
+.utill ul li:last-child::after{
+    content: " ";
+}
+
+.utill li{
+    margin-left: 4px;
+}
+
+
+/* main */
+
+main{
+    width: 100%;
+    height: 658px;
+}
+
+/* mainIn */
+.mainIn{
+    width: 980px;
+    height: 658px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.mainIn.list{
+    height: 400px;
+}
+
+
+.mainIn div{
+    display: inline-flex;
+    flex-direction: column;
+}
+/* aside */
+
+main .aside{
+
+    width: 176px;
+    height: 400px;
+}
+
+aside div{
+    display: flex;
+    flex-direction: row;
+}
+
+.sub_title{
+    width: 156px;
+    height: 30px;
+    margin: 0 auto;
+    border: 1px solid #CCCCCC;
+    border-radius: 20px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.sub_title span{
+    margin-left: 20px;
+}
+
+
+
+/* adm_list */
+.adm_list{
+    width: 156px;
+    height: 234px;
+    margin-left: 20px;
+    
+}
+
+.adm_list ul{
+    margin-bottom: 10px;
+}
+
+.adm_list > ul > li:nth-child(1){
+    margin-top: 20px;
+}
+
+.adm_list > ul > li > ul > li:first-child{
+    margin-top: 5px;
+}
+
+.adm_list > ul > li > ul > li::before{
+    content: "└";
+}
+
+/* section */
+
+main .section{
+    width: 804px;
+    height: 658px;
+    float: right;
+    box-sizing: border-box;
+}
+
+.section.list{
+    height: 400px;
+}
+
+
+
+/* main_container */
+.main_container{
+    margin-left: 10px;
+}
+
+
+/* main_top */
+.main_top{
+    width: 100%;
+    height: 45px;
+    text-align: left;
+    
+}
+
+.main_top span{
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 700;
+    color: #3F3F3F;
+    margin-top: 12px;
+}
+
+/* tbname */
+
+.tbname{
+    width: 784px;
+    height: 17px;
+    box-sizing: border-box;
+}
+
+
+.tbname span{
+    width: 784px;
+    height: 17px;
+    line-height: 17px;
+    margin-bottom: 6px;
+    box-sizing: border-box;
+}
+
+.tbname span:nth-child(1){
+  
+    float: left;
+    
+}
+.tbname span:nth-child(2){
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+}
+
+/* table */
+
+.status_table{
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    height: 193px;
+}
+
+.status_table.list{
+    height: 219px;
+}
+
+.status_table table{
+    width: 784px;
+    border-top : 2px solid #333333;
+}
+
+
+
+.status_table th{
+    height: 42px;
+  
+}
+
+.status_table td{
+    height: 42px;
+    border-bottom: 1px dotted #999999;
+    text-align: center;
+}
+
+/* product - list.html  */
+#userList{
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    height: 193px;
+   
+}
+
+
+
+#userList table{
+    width: 784px;
+    border-top : 2px solid #333333;
+   
+}
+
+
+
+#userList th{
+    height: 42px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#userList td{
+    height: 42px;
+    border-bottom: 1px dotted #999999;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#userList  tbody  tr{
+    height: 42px;
+}
+
+#product_img1{
+    width: 60px;
+    height: 60px;
+}
+
+
+/* 등급 */
+
+#grade{
+    border: 1px solid #767676;
+    background-color: #efefefef;
+    appearance: none; 
+    width: 28px;
+    height: 18px;
+    text-align: left;
+    text-indent: 5px;
+    line-height: 14px;
+    font-size: 12px;
+    align-content: center ;
+}
+
+
+
+/* btn- group */
+.status_table .btn_group {
+    width: 784px;
+    height: 51px;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn_group > .deletebtn{
+    width: 48px;
+    height: 14px;
+    width: auto;
+    float: left;
+    position: relative;
+    margin-top: 11px;
+    align-self: self-start;
+}
+
+.btn_group > .insertbtn {
+    width: 74px;
+    height: 31px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px solid #cccccc;
+    text-align: center;
+    line-height: 31px;
+    margin-top: 10px;
+}
+
+
+
+
+/* pages */
+.pages{
+    width: 784px;
+    height: 35px;
+    text-align: center;
+}
+
+.pages ul li{
+    display: inline-flex;
+    text-align: center;
+}
+
+.pages ul li:first-child::before{
+    content: "<";    
+}
+
+.pages ul li:nth-child(5)::after{
+    content: '>';
+}
+
+
+
+
+/* footer */
+footer{
+    width: 100%;
+    height: auto;
+    color: #ffffff;
+    background:  #353535;
+}
+
+.fIn{
+    width: 980px;
+    height: 41px;
+    margin: 0 auto;
+
+
+}
+
+.fttxt{
+    font-family: Inter;
+    font-size: 11.63px;
+    font-weight: 400;
+    line-height:12px;
+    text-align: left;
+    margin-left: 12px;
+    padding-top: 12px;
+}
+
+.fttxt span{
+    float: left;
+}
+
+.copy{
+    font-family: Inter;
+    font-size: 11.25px;
+    font-weight: 400;
+    line-height:13.62px;
+    text-align: left;
+
+}
+
+.copy p{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    right: 12px;
+}
+
+.copy p span::after{
+    content: "ⓒ";
+}
+.copy p span{
+    margin-right: 2px;
+}

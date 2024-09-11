@@ -1,0 +1,231 @@
+.tabs {
+    display: flex;
+    width: 200px;
+    height: 14px;
+    margin-top: 41px;
+    gap: 8px;
+}
+
+.tabs_item:nth-of-type(1) {
+    font-family: Inter;
+    font-size: 11.81px;
+    font-weight: 400;
+    line-height: 14.3px;
+    text-align: left;
+}
+
+.tabs_item {
+    position: relative;
+}
+
+.tabs_item::after {
+    position: absolute;
+    top: 2px;
+    right: -4px;
+    display: block;
+    content: "";
+    clear: both;
+    width: 1px;
+    height: 14px;
+    background-color: #000;
+    
+}
+
+.item {
+    font-family: Inter;
+    font-size: 11.81px;
+    font-weight: 400;
+    line-height: 14.3px;
+    text-align: left;
+    color: #999999 !important;
+}
+
+.item::after {
+    position: absolute;
+    top: 2px;
+    right: -4px;
+    display: block;
+    content: "";
+    clear: both;
+    width: 1px;
+    height: 14px;
+    background-color: #999999 !important;
+}
+
+
+.item_last::after {
+    display: none;
+}
+
+.product_table {
+    width: 762px;
+    height: 564px;
+    margin-top: 12px;
+    border-collapse: collapse;
+    border-top: 1px solid #111111;
+}
+
+.row {
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.product_table tr:nth-of-type(2),
+.product_table tr:nth-of-type(3),
+.product_table tr:nth-of-type(4){
+    width: 762px;
+    height: 105px;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.product_table tr:nth-of-type(5) {
+    width: 762px;
+    height: 105px;
+    border-bottom: 1px solid #111111;
+}
+
+
+.product_table th {
+    width: 762px;
+    height: 38px;
+    top: 0.5px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: center;
+    background-color: #E5ECEF;
+}
+
+.pic > img{
+    width: 80px;
+    height: 80px;
+    margin-top: 10.5px;
+    margin-left: 10px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.type {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: center;
+    color: #777777;
+}
+
+.pro_name {
+    font-family: Inter;
+    font-size: 11.06px;
+    font-weight: 400;
+    line-height: 13.39px;
+    text-align: left;
+    color: #111111;
+}
+
+.sale {
+    font-family: Inter;
+    font-size: 11.63px;
+    font-weight: 400;
+    line-height: 14.07px;
+    text-align: center;
+    color: #111111;
+}
+
+.point {
+    font-family: Inter;
+    font-size: 9.75px;
+    font-weight: 400;
+    line-height: 11.8px;
+    text-align: center;
+    color: #111111;
+
+}
+
+.price {
+    text-align: center;
+    
+}
+
+.product_table strong {
+    font-family: Inter;
+    font-size: 10.13px;
+    font-weight: 700;
+    line-height: 12.25px;
+    text-align: center;
+
+}
+
+.product_table .original_price {
+    text-decoration: line-through;
+    color: #777777;
+    margin-left: 5px;
+    font-family: Inter;
+    font-size: 9.75px;
+    font-weight: 400;
+    line-height: 11.8px;
+    text-align: center;
+}
+
+/* pages */
+.pages{
+    width: 802px;
+    height: 35px;
+    text-align: center;
+    margin-top: 18px;
+    margin-left: -30px;
+}
+
+.pages ul {
+    display: flex;
+    margin-left: 370.22px;
+    position: relative;
+}
+
+.pages ul li{
+    text-align: center;
+}
+
+.pages ul li:first-child::before{
+    content: "<";    
+    color: #999999;
+    position: absolute;
+    right: 431px;
+    top: 1px; 
+}
+
+.pages ul li:nth-child(5)::after{
+    content: ">";
+    color: #999999; 
+    position: absolute;
+    top: 1px;
+}
+
+
+.no {
+    font-family: Inter;
+    font-size: 10.5px;
+    font-weight: 400;
+    line-height: 12.71px;
+    text-align: center;
+    margin-right: 5px;
+    text-decoration: none;
+    color: #999999; 
+    font-weight: normal;
+    display: inline-block;
+}
+
+.last_no {
+    font-family: Inter;
+    font-size: 10.5px;
+    font-weight: 400;
+    line-height: 12.71px;
+    text-align: center;
+    margin-right: 0px;
+}
+
+.current {
+    color: #000; /* Black color for the active link */
+    font-weight: bold;
+    text-decoration: underline;
+}

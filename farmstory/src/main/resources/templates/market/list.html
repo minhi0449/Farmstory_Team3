@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품목록</title>
+    <link rel="shortcut icon" th:href="@{/images/fav.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/style_market_list.css}">
+</head>
+<body>
+    <div id="wrapper">
+
+        <th:block th:include ="./include/header.html"/>
+        <!-- #main -->
+        <main id="main" class="cf">
+            <section class="mainIn cf">
+                <div class="sub_bg">
+                    <img src="../images/sub_top_tit2.png" alt="MARKET" class="sub_tit">
+                </div><!-- .sub_bg -->
+                <aside class="aside">
+                    <div class="sidebar">
+                        <div class="aside_cate">
+                            <img src="../images/sub_aside_cate2_tit.png" alt="Buying in the Market 장보기">
+                        </div><!-- .aside_cate -->
+                        <div class="aside_bg">
+                            <ul class="cate_lnb">
+                                <li> <a href="#">장보기</a></li>
+                            </ul><!-- .cate_lnb -->
+                        </div><!-- .aside_bg -->
+                    </div><!-- .sidebar -->
+                </aside><!-- .aside -->
+                <article class="article">
+                    <div class="articleIn cf">
+                        <nav>
+                            <h2>
+                                <img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기">
+                            </h2>
+                            <p class="location">
+                                <img src="../images/sub_page_nav_ico.gif" alt="메뉴">
+                                <span>HOME </span>
+                                <span>장보기 </span>
+                                <strong>장보기</strong> 
+                            </p>
+                        </nav>
+                        <ul class="tabs">
+                            <li><a href="#" class="tabs_item">전체(10)</a></li>
+                            <li><a href="#" class="tabs_item item">과일</a></li>
+                            <li><a href="#" class="tabs_item item">야채</a></li>
+                            <li><a href="#" class="tabs_item item item_last">곡류</a></li>
+                        </ul>
+                        <table class="product_table">
+                            <colgroup>
+                                <col width="13.14%">    <!-- 이미지 -->
+                                <col width="10.01%">    <!-- 종류 -->
+                                <col width="40.93%">    <!-- 상품명 -->
+                                <col width="12.02%">    <!-- 할인 -->
+                                <col width="12.02%">    <!-- 포인트 -->
+                                <col width="12.02%">    <!-- 판매가격 -->
+                            </colgroup>
+                            <thead>
+                                <tr class="row">
+                                    <th>이미지</th>
+                                    <th>종류</th>
+                                    <th>상품명</th>
+                                    <th>할인</th>
+                                    <th>포인트</th>
+                                    <th>판매가격</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pic"><img src="../images/market_item1.jpg" alt="사과 500g"></td>
+                                    <td class="type">과일</td>
+                                    <td class="pro_name"><a th:href="@{/market/view}">사과 500g</td>
+                                    <td class="sale">10%</td>
+                                    <td class="point">400P</td>
+                                    <td class="price"><strong>3,600원</strong><span class="original_price">4,000원</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pic"><img src="../images/market_item2.jpg" alt="전남 완주 배 5kg"></td>
+                                    <td class="type">과일</td>
+                                    <td class="pro_name">전남 완주 배 5kg</td>
+                                    <td class="sale">10%</td>
+                                    <td class="point">400P</td>
+                                    <td class="price"><strong>3,600원</strong><span class="original_price">4,000원</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pic"><img src="../images/market_item3.jpg" alt="방울 토마토"></td>
+                                    <td class="type">과일</td>
+                                    <td class="pro_name">방울 토마토</td>
+                                    <td class="sale">10%</td>
+                                    <td class="point">400P</td>
+                                    <td class="price"><strong>3,600원</strong><span class="original_price">4,000원</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pic"><img src="../images/market_item4.jpg" alt="무농약 현미"></td>
+                                    <td class="type">곡류</td>
+                                    <td class="pro_name">무농약 현미</td>
+                                    <td class="sale">10%</td>
+                                    <td class="point">400P</td>
+                                    <td class="price"><strong>3,600원</strong><span class="original_price">4,000원</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pic"><img src="../images/market_item5.jpg" alt="팜스토리 하루야채 샐러드"></td>
+                                    <td class="type">야채</td>
+                                    <td class="pro_name">팜스토리 하루야채 샐러드</td>
+                                    <td class="sale">10%</td>
+                                    <td class="point">400P</td>
+                                    <td class="price"><strong>3,600원</strong><span class="original_price">4,000원</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pages">
+                            <ul>
+                                <li><a href="#" class="no current">&nbsp;[1]</a></li>
+                                <li><a href="#" class="no">[2]</a></li>
+                                <li><a href="#" class="no">[3]</a></li>
+                                <li><a href="#" class="no">[4]</a></li>
+                                <li><a href="#" class="no last_no">[5]&nbsp;</a></li>
+                            </ul>
+                        </div>
+                    </div><!-- .articleIn -->
+                </article><!-- .article -->
+            </section>
+        </main><!-- #main -->
+        
+       <footer id="footer">
+            <div class="footerIn cf">
+            <img src="../images/footer_logo.png" alt="farmStory footer" class="flogo">
+            <div class="finfo">
+                <span class="tel">(주)팜스토리 / 사업자등록번호 123-45-67890 / 통신판매업신고 제 2013-팜스토리구-123호 / 벤처기업확인 서울지방중소기업청 제 012345678-9-01234호<br>
+                    등록번호 팜스토리01234 (2013.04.01) / 발행인 : 홍길동 <br>
+                    대표 : 홍길동 / 이메일 : email@mail.mail / 전화 : 01&#41; 234-5678 / 경기도 성남시 잘한다구 신난다동 345
+                </span><!-- .tel -->
+                <p class="fcopy">Copyright(C)홍길동 All rights reserved.</p><!-- .fcopy -->
+            </div><!-- .finfo -->
+            </div><!-- .footerIn -->
+        </footer><!-- footer -->
+
+    </div><!-- #wrapper -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../css/user/terms.css">
+        <link rel="stylesheet" href="../css/footer.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms</title>
+    <!-- 
+        작업내용 
+        2024/08/26  하진희 terms html, css update
+    -->
+
+
+</head>
+<body>
+    <div id="wrapper">
+        <th:block th:include ="/include/header.html"/>
+
+
+ 
+        <!-- main -->
+        <main>
+            <div class="mainIn">
+                <section class="terms">
+                    <table>
+                        <caption>사이트 이용약관</caption>
+                        <tr>
+                            <td>
+                                <textarea readonly>약관내용</textarea>
+                                <p>
+                                    <label><input type="checkbox" name="chk1"/>동의합니다.</label>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <caption>개인정보 취급방침</caption>
+                        <tr>
+                            <td>
+                                <textarea readonly>개인정보 내용</textarea>
+                                <p>
+                                    <label><input type="checkbox" name="chk2"/>동의합니다.</label>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a href="#" class="btnCancel">취소</a>
+                        <a href="#" class="btnNext">다음</a>
+                    </div>
+                </section>
+            </div>
+        </main><!-- main end -->
+
+        <footer id="footer">
+
+            <div class="footerIn cf">
+            <img src="../images/footer_logo.png" alt="farmStory footer" class="flogo">
+            <div class="finfo">
+                <span class="tel">(주)팜스토리 / 사업자등록번호 123-45-67890 / 통신판매업신고 제 2013-팜스토리구-123호 / 벤처기업확인 서울지방중소기업청 제 012345678-9-01234호<br>
+                    등록번호 팜스토리01234 (2013.04.01) / 발행인 : 홍길동 <br>
+                    대표 : 홍길동 / 이메일 : email@mail.mail / 전화 : 01&#41; 234-5678 / 경기도 성남시 잘한다구 신난다동 345
+                </span><!-- .tel -->
+                <p class="fcopy">Copyright(C)홍길동 All rights reserved.</p><!-- .fcopy -->
+            </div><!-- .finfo -->
+            
+
+            </div><!-- .footerIn -->
+        </footer><!-- footer -->
+    </div>
+    
+</body>
+</html>

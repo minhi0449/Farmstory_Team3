@@ -1,0 +1,33 @@
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<header id="header">
+    <div class="headerIn">
+        <div class="topline">
+            <img th:src="@{/images/head_top_line.png}" alt="topline"/>
+        </div><!-- .topLine -->
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="farmStory logo"></a>
+        </div><!-- .logo -->
+        <ul class="utill">
+            <li><a th:href="@{/}">HOME</a></li>
+            <li><a th:href="@{/user/login}">로그인</a></li>
+            <li><a th:href="@{/user/register}">회원가입</a></li>
+            <li><a th:href="@{/admin/product/list}">관리자상품목록</a></li>
+<!--            <li><a th:href="@{/croptalk/story}">고객센터</a></li>-->
+        </ul><!-- .utill -->
+        <div class="h_txt">
+            <img th:src="@{/images/head_txt_img.png}" alt="3만원이상 무료배송·팜카드 10%적립">
+        </div><!-- .h_txt -->
+        <nav class="gnb_wrap">
+            <ul class="gnb">
+                <li><a th:href="@{/introduction/introduction}"><img th:src="@{/images/head_menu1.png}" alt="팜스토리소개"></a></li>
+                <li><a th:href="@{/market/list}">
+                    <img th:src="@{/images/head_menu_badge.png}" alt="30%" class="discount"/>
+                    <img th:src="@{/images/head_menu2.png}" alt="장보기">
+                </a></li>
+                <li><a th:href="@{/croptalk/story}"><img th:src="@{/images/head_menu3.png}" alt="농작물이야기"></a></li>
+                <li><a th:href="@{/event/event}"><img th:src="@{/images/head_menu4.png}" alt="이벤트"></a></li>
+                <li><a th:href="@{/croptalk/story}"><img th:src="@{/images/head_menu5.png}" alt="커뮤니티"></a></li>
+            </ul><!-- .gnb -->
+        </nav><!-- .gnb_wrap -->
+    </div><!-- .headerIn -->
+</header><!-- #header -->

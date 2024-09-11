@@ -1,0 +1,423 @@
+* {
+    margin: 0;
+    padding: 0;      
+    box-sizing: border-box;      
+}
+
+ul, ol {list-style: none;}
+a {text-decoration: none; color: #111;}
+
+
+
+#header {
+    width: 980px;
+    height: 142px;
+    background-image: url(../images/head_top_line.png);
+    background-repeat: no-repeat;   
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo img {
+    width: 190px;
+    height: 64px;
+    margin-top: 20px;
+    margin-left: 395px; 
+}
+
+.utill {
+    display: flex; /* 항목들을 가로로 배치 */
+    margin-left: 787.45px;
+    position: absolute;
+    top: 17px;
+    box-sizing: border-box;
+}
+
+.utill li {
+    margin-right: 2px; /* 항목들 사이의 간격 */
+}
+
+.utill li:not(:last-child)::after {
+    content: "|"; /* 구분자 추가 */
+    margin-left: 2px; /* 구분자와 링크 간격 */
+    color: black; /* 구분자 색상 */
+}
+
+.utill a {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.utill li:last-child {
+    margin-right: 0; /* 마지막 항목의 오른쪽 여백 제거 */
+}
+
+.h_txt img {
+    width: 229px;
+    height: 15px;
+    position: absolute;
+    top: 59px;
+    left: 751px;
+}
+
+.gnb {
+    display: flex;
+    width: 980px;
+    height: 50px;
+    top: 92px;
+}
+
+.gnb > li {
+    width: 196px;
+    height: 50px;
+    background-image: url(../images/head_menu_line.png);
+    background-repeat: no-repeat;   
+}
+
+.gnb img {
+    margin-top: 12px;
+}
+
+.gnb > li:nth-child(2) {
+    position: relative;
+}
+
+.gnb > li:nth-child(2) > img {
+    width: 37px;
+    height: 34px;
+    position: absolute;
+    left: 98px;
+    top: -22px; 
+}
+
+/* main */
+#main {
+    width: 100%;
+    height: auto;
+
+}
+
+.mainIn {
+    width: 980px;
+    height: 758px;
+    top: 326px;
+    left: 470px;
+    margin: 0 auto;
+}
+
+.sub_bg {
+    background: url("../images/sub_top_bg.jpg") no-repeat;
+    width: 980px;
+    height: 184px;
+    top: 142px;
+    left: 470px;
+}
+
+.sub_bg > img {
+    width: 270px;
+    height: 37px;
+    margin-top: 137px;
+    margin-left: 10px;
+}
+
+.sidebar {
+    width: 176px;
+    height: 650px;
+    background: url("../images/sub_aside_bg_line.png") no-repeat right;
+}
+
+.sidebar > nav > h2 > img {
+    width: 129px;
+    height: 44px;
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+.sidebar > nav {
+    position: relative;
+}
+
+.sidebar > nav > img {
+    width: 175px;
+    height: 233px;
+    position: absolute;
+    top: 80px;
+
+}
+
+.sidebar > nav > img:nth-of-type(2) {
+    width: 175px;
+    height: 233px;
+    margin-top: 20px;
+}
+
+.sidebar > nav > ul img {
+    width: 175px;
+    height: 29px;
+}
+
+.cate5_lnb1 > img{
+    position: absolute;
+    top: 106px;
+}
+
+.cate5_lnb2 > img{
+    position: absolute;
+    top: 141px;
+}
+
+.cate5_lnb3 > img{
+    position: absolute;
+    top: 176px;
+}
+
+.cate5_lnb4 > img{
+    position: absolute;
+    top: 211px;
+}
+
+.cate5_lnb5 > img{
+    position: absolute;
+    top: 246px;
+}
+
+.cate5_lnb1 > img:hover{
+    content: url(../images/sub_cate5_lnb1_ov.png);
+}
+.cate5_lnb2 > img:hover{
+    content: url(../images/sub_cate5_lnb2_ov.png);
+}
+.cate5_lnb3 > img:hover{
+    content: url(../images/sub_cate5_lnb3_ov.png);
+}
+.cate5_lnb4 > img:hover{
+    content: url(../images/sub_cate5_lnb4_ov.png);
+}
+.cate5_lnb5 > img:hover{
+    content: url(../images/sub_cate5_lnb5_ov.png);
+}
+
+
+.article {
+    width: 802px;
+    height: 758px;
+    margin-left: 176px;
+    position: absolute;
+    top: 326px;
+}
+
+.food > img {
+    width: 109px;
+    height: 24px;
+    margin-top: 43px;
+}
+
+
+.article > nav {
+    width: 762px;
+    height: 72px;
+    margin-left: 40px;
+    border-bottom: 1px solid #C2C2C2;
+}
+
+.tit_notice > img {
+    width: 90px;
+    height: 26px;
+    margin-top: 41px;
+}
+
+.tit_diet > img {
+    width: 109px;
+    height: 24px;
+    margin-top: 43px;
+    
+}
+
+.tit_chef > img {
+    width: 110px;
+    height: 25px;
+    margin-top: 42px;
+}
+
+.tit_cs > img {
+    width: 128px;
+    height: 25px;
+    margin-top: 42px;
+}
+
+.tit_faq > img {
+    width: 131px;
+    height: 24px;
+    margin-top: 43px;
+}
+
+
+.location{
+    float:right; 
+    position: absolute;
+    top:51px; 
+    left: 626.13px;
+    height: 17px;
+    font-family: Inter; 
+    font-size: 12px; 
+    font-weight: 400; 
+    line-height: 14.52px; 
+    text-align: left;
+}
+
+.chef {
+    left: 613.13px;
+}
+
+.client {
+    left: 608.13px;
+}
+
+.question {
+    left: 602.13px;
+}
+
+.today {
+    left: 626.13px;
+}
+
+.location > img {
+    margin-bottom: 1px;
+}
+
+.location span{
+    color:#8C8C8C;
+}
+
+.location span:after{
+    display: inline-block; 
+    content: ">" ; 
+    clear: both;
+}
+
+.location strong{
+    color:#91BA15;
+}
+
+
+.menu {
+    display: flex;
+    width: 200px;
+    height: 14px;
+    position: absolute;
+    top: 113px;
+    left: 40px;
+    gap: 8px;
+}
+
+.menu_item:nth-of-type(1) {
+    font-family: Inter;
+    font-size: 11.81px;
+    font-weight: 400;
+    line-height: 14.3px;
+    text-align: left;
+}
+
+.menu_item {
+    position: relative;
+}
+
+.menu_item::after {
+    position: absolute;
+    top: 1px;
+    left: -4px;
+    display: block;
+    content: "";
+    clear: both;
+    width: 1px;
+    height: 14px;
+    background-color: #000;
+}
+
+.item::after {
+    position: absolute;
+    top: 1px;
+    left: -4px;
+    display: block;
+    content: "";
+    clear: both;
+    width: 1px;
+    height: 14px;
+    background-color: #999999;
+}
+
+.menu_item:first-child::after {
+    display: none;
+}
+
+.item {
+    font-family: Inter;
+    font-size: 11.81px;
+    font-weight: 400;
+    line-height: 14.3px;
+    text-align: left;
+    color: #999999;
+}
+
+.board{
+    width: 260px;
+    height: 14px;
+    position: absolute;
+    top: 113px;
+    left: 40px;
+}
+
+.board p {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+}
+
+/* 푸터 영역 */
+footer {
+    width: 980px;
+    height: 130px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+    background: url(../images/footer_top_line.png) no-repeat;
+    background-position: top;
+    background-position-y: -4px;
+    top: 75px;
+    left: 0px;
+}
+
+footer > img {
+    float: left;
+}
+
+footer > span:nth-child(2) {
+    font-size: 10.83px;
+    line-height: 18px;
+    word-spacing: -3px;
+    position: absolute;
+    width: 720.68px;
+    top: 27px;
+    right:  15.8px;
+    color: #585858;
+    font-weight: 400;
+
+}
+
+footer > span:nth-child(3) {
+    font-family: Inter;
+    font-size: 10.88px;
+    font-weight: 700;
+    line-height: 13.16px;
+    text-align: left;
+    position: absolute;
+    bottom: 33px;
+    right: 534px;
+    color: #888888;
+}
