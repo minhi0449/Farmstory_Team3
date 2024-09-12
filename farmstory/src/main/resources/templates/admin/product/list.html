@@ -9,11 +9,10 @@
 <body>
     <!-- wrapper -->
     <div id="wrapper">
-        <th:block th:include ="./admin/include/header.html"/>
-
+        <th:block th:insert = "~{/admin/include/header.html}"/>
         <main>
             <div class="mainIn list">
-                <th:block th:include ="/admin/include/aside.html"/>
+                <th:block th:insert = "~{/admin/include/aside.html}"/>
                 <div class="section list">
                     <section>
                         <div class="main_container">
@@ -32,14 +31,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><img src="../../../static/adminImages/sample_item1.jpg" id="product_img1" alt="샘플 이미지"></td>
-                                            <td>1011</td>
-                                            <td>사과500g</td>
-                                            <td>과일</td>
-                                            <td>4,000원</td>
-                                            <td>100</td>
-                                            <td>2023-01-01</td>
+                                        <tr th:each="product:${products}">
+                                            <td><img th:src="@{/uploads/${product.img1}}" id="product_img1" alt="샘플 이미지"></td>
+                                            <td>[[${product.prodNo}]]</td>
+                                            <td>[[${product.prodName}]]</td>
+                                            <td>[[${product.type}]]</td>
+                                            <td>[[${product.price}]]</td>
+                                            <td>[[${product.stock}]]</td>
+                                            <td>[[${product.regdate}]]</td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -68,7 +68,7 @@
             </div><!--mainIn-->
         </main><!--main end-->
 
-        <th:block th:include ="./admin/include/footer.html"/>
+        <th:block th:insert = "~{/admin/include/footer.html}"/>
 
     </div> <!--wrapper end-->
 </body>
