@@ -22,6 +22,8 @@ public class CartController {
     }
     @GetMapping("/market/order")
     public String order() {
+        // TODO: 사용자의 정보 가져와야함(name, hp, point)
+
         return "/market/order";
     }
 

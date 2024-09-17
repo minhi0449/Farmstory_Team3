@@ -26,7 +26,7 @@ public class ProductRepositoryTest {
                 .img2("")
                 .img3("")
                 .etc("")
-                .uid("A101")
+//                .uid("A101")
                 .build();
         productRepository.save(product);
     }
