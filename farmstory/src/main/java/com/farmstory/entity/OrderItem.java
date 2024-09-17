@@ -19,11 +19,11 @@ public class OrderItem {
     private int discount;
     private int deliveryFee;
     private int count;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderNo")
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prodNo")
     private Product product;
 }

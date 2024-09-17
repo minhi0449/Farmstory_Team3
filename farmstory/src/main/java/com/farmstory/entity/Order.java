@@ -40,7 +40,7 @@ public class Order {
     @CreationTimestamp
     private LocalDateTime createAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
     private User user;
 
