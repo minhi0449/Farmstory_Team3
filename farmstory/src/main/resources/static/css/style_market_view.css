@@ -68,7 +68,20 @@
 .deliver > span {
     color: #777777;
 }
-
+#etc {
+    font-size : 10px;
+    color: #777777;
+}
+.original_price {
+    text-decoration: line-through;
+    color: #777777;
+    margin-left: 5px;
+    font-family: Inter;
+    font-size: 10.69px;
+    font-weight: 400;
+    line-height: 11.8px;
+    text-align: center;
+}
 .sell_price {
     font-family: Inter;
     font-size: 10.69px;
