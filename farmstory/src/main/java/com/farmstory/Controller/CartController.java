@@ -7,14 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CartController {
 
-    @GetMapping("/market/view")
-    public String view() {
-        return "/market/view";
-    }
-    @GetMapping("/market/list")
-    public String list() {
-        return "/market/list";
-    }
     // cart
     @GetMapping("/market/cart")
     public String cart() {

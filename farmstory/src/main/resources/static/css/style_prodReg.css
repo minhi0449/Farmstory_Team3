@@ -210,6 +210,7 @@ main .section{
   
     float: left;
     
+
 }
 .tbname span:nth-child(2){
     box-sizing: border-box;
@@ -257,7 +258,19 @@ main .section{
     border: 1px solid #767676;
     
 }
+/* deleveryfee radio 크기 조정 - 황수빈 */
 
+input[type="radio"] {
+    width: 12px; /* 체크박스 크기 조절 */
+    height: 12px;
+    vertical-align: middle;
+}
+label {
+    font-size: 12px; /* 폰트 크기 조절 */
+    margin-right: 5px;
+    vertical-align: middle;
+
+}
 
 
 /* select  */
@@ -276,13 +289,18 @@ main .section{
     height: 18px;
     border: 1px solid #767676;
     background: #efefef;
-    appearance: none;
     text-indent: 3px;
     line-height: 18px;
-
- 
 }
 
+#point{
+    width: 44px;
+    height: 18px;
+    border: 1px solid #767676;
+    background: #efefef;
+    text-indent: 3px;
+    line-height: 18px;
+}
 
 /* label */
 
