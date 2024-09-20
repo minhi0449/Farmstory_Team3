@@ -31,9 +31,10 @@ public class ProductDTO {
     private int deliveryfee;
     private int stock;
     private int point;
-    private String img1;
-    private String img2;
-    private String img3;
+    private String img1; // 썸네일 (목록) 이미지
+    private String img2; // 기본 정보 이미지
+    private String img3; // 상세 정보 이미지
+    // TODO : 상세 정보 이미지는 List를 이용하여 여러장 받기
 
     private String regdate;
 

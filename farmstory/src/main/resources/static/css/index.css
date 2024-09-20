@@ -279,17 +279,21 @@ main .main_banner .bannertxt{
 .market{
     width: 100%;
     text-align: center;
-    align-self: center ;
-    
+    display : flex;
+    justify-content: flex-start; /* 오른쪽 정렬 */
+
+
 }
+
 
 .market article{
     display: inline-block;
-    width: 155px;
+    width: 16.3%;
     height: 236px;
     border: 1px solid #EEEEEE;
     text-align: center;
     box-sizing: border-box;
+    margin-right: 5px;
 }
 
 .market article:last-child{
@@ -306,7 +310,7 @@ main .main_banner .bannertxt{
     margin-top: 11px;
 }
 
-.mtxt span{
+.producttype{
     font-size: 12px;
     color: #777777;
     height: 14px;
@@ -333,7 +337,6 @@ main .main_banner .bannertxt{
     overflow: hidden;
     display: inline-flex;
     margin-top: 10px;
-
 }
 
 
@@ -347,7 +350,35 @@ main .main_banner .bannertxt{
     flex-wrap: nowrap;
 
 }
+/*subin product list price */
+.original_price {
+    text-decoration: line-through;
+    color: #777777;
+    margin-left: 5px;
+    font-family: Inter;
+    font-size: 9.75px;
+    font-weight: 400;
+    line-height: 11.8px;
+    text-align: center;
+}
+.discountrate {
+    color: red;
+    margin-left: 5px;
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
 
+}
+.product_table strong {
+    font-family: Inter;
+    font-size: 10.13px;
+    font-weight: 700;
+    line-height: 12.25px;
+    text-align: center;
+
+}
 .ad >article > a{
     display: inline-flex;
     box-sizing: border-box;
