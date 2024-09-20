@@ -30,74 +30,14 @@
                 </div><!-- .maintit end -->
 
                 <section class="market">
-                    <article>
-                        <a href="">
-                            <img th:src="@{/images/market_item6.jpg}" alt="과일 샘플 이미지">
+                    <article th:each="product: ${products}">
+                        <a th:href="@{'/market/view?prodNo='+${product.prodNo}}">
+                            <img th:src="@{'/MainImage/'+${product.img1}}" alt="과일 샘플 이미지">
                             <div class="mtxt">
-                                <span>과일</span>
-                                <p class="prodname">사과 500g</p>
-                                <p class="del">4,000</p>
-                                <p class="price"><strong>3,600원</strong></p>
-                            </div>
-
-                        </a>
-                    </article>
-                    <article>
-                        <a href="">
-                            <img th:src="@{/images/market_item5.jpg}" alt="과일 샘플 이미지">
-                            <div class="mtxt">
-                                <span>과일</span>
-                                <p class="prodname">사과 500g</p>
-                                <p class="del">4,000</p>
-                                <p class="price"><strong>3,600원</strong></p>
-                            </div>
-
-                        </a>
-                    </article>
-                    <article>
-                        <a href="">
-                            <img th:src="@{/images/market_item4.jpg}" alt="과일 샘플 이미지">
-                            <div class="mtxt">
-                                <span>과일</span>
-                                <p class="prodname">사과 500g</p>
-                                <p class="del">4,000</p>
-                                <p class="price"><strong>3,600원</strong></p>
-                            </div>
-
-                        </a>
-                    </article>
-                    <article>
-                        <a href="">
-                            <img th:src="@{/images/market_item3.jpg}" alt="과일 샘플 이미지">
-                            <div class="mtxt">
-                                <span>과일</span>
-                                <p class="prodname">사과 500g</p>
-                                <p class="del">4,000</p>
-                                <p class="price"><strong>3,600원</strong></p>
-                            </div>
-
-                        </a>
-                    </article>
-                    <article>
-                        <a href="">
-                            <img th:src="@{/images/market_item2.jpg}" alt="과일 샘플 이미지">
-                            <div class="mtxt">
-                                <span>과일</span>
-                                <p class="prodname">사과 500g</p>
-                                <p class="del">4,000</p>
-                                <p class="price"><strong>3,600원</strong></p>
-                            </div>
-
-                        </a>
-                    </article>
-                    <article>
-                        <a href="">
-                            <img th:src="@{/images/market_item1.jpg}" alt="과일 샘플 이미지">
-                            <div class="mtxt">
-                                <span>과일</span>
-                                <p class="prodname">사과 500g</p>
-                                <p class="del">4,000</p>
-                                <p class="price"><strong>3,600원</strong></p>
+                                <span class = "producttype">[[${product.type}]]</span>
+                                <p class="prodname">[[${product.prodName}]]</p>
+                                <span class="original_price">[[${product.price}]]</span><span class = "discountrate">[[${product.discount}]]%</span>
+                                <p class="sell_price"><strong>[[${product.price - product.price * product.discount / 100}]]원</strong></p>
                             </div>
 
                         </a>
