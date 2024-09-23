@@ -372,6 +372,9 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column; /* Stack label and input vertically */
 }
+.file_upload_form{
+    width: 100%;
+}
 
 .file_upload_form label {
     font-size: 14px; /* Font size for labels */
@@ -429,12 +432,16 @@ input[type="checkbox"] {
 }
 
 .cf_input > p{
+    font-size: 10px;
+    width:auto;
     left: 96px;
     position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    overflow: visible; /* 글자 넘침 표시 */
+    text-overflow: ellipsis; /* ...으로 표시하기 */
+
 
 }
 
