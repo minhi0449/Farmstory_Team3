@@ -13,6 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
                  // 윈도우 경로
                  .addResourceLocations("file:///C:/Users/lotte4/Desktop/Spring/uploads/MainImage/");
                 // 맥 경로
-//                .addResourceLocations("file:///Users/hwangsubin/Desktop/farm/uploads/MainImage/");
+               // .addResourceLocations("file:///Users/hwangsubin/Desktop/farm/uploads/MainImage/");
     }
 }

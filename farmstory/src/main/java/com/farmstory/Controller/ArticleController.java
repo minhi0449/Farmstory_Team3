@@ -11,6 +11,7 @@ public class ArticleController {
     public String story() {
         return "/croptalk/story";
     }
+
     @GetMapping("/community/notice")
     public String notice() {
         return "/community/notice";

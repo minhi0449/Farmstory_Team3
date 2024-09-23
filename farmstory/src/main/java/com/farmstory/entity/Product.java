@@ -34,14 +34,13 @@ public class Product {
     private String img2;
     private String img3;
 
-
-
+    private String etc;
 
     @CreationTimestamp
     @Column(updatable = false, columnDefinition = "DATETIME")
     private String regdate;
 
-    private String etc;
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_uid")

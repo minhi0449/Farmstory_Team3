@@ -28,7 +28,7 @@ public class ProductService {
     // 윈도우 경로
      public static String uploadDir = "C:\\Users\\lotte4\\Desktop\\Spring\\uploads\\MainImage\\";
     // 맥 경로
-   //public static String uploadDir = "/Users/hwangsubin/Desktop/farm/uploads/MainImage/";
+    // public static String uploadDir = "/Users/hwangsubin/Desktop/farm/uploads/MainImage/";
     @Transactional
     public void insertProduct(ProductDTO productDTO, MultipartFile[] images) {
         log.info(uploadDir);
