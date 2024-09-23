@@ -84,8 +84,8 @@
                                     <th>판매가격</th>
 
                                     <td class="sell_price">
-                                        <span class="original_price">[[${product.price}]]</span>  &nbsp
-                                        <span id="price">[[${product.price - product.price * product.discount / 100}]]</span>원</td>
+                                        <span class="original_price">[[${product.price}]]</span><span class = "discountrate">[[${product.discount}]]%</span>
+                                        <span id="price">&nbsp;&nbsp;[[${product.price - product.price * product.discount / 100}]]</span>원</td>
                                 </tr>
                                 <tr>
                                     <th>구매수량</th>
