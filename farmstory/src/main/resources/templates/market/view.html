@@ -9,22 +9,48 @@
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/style_market_view.css}">
     <script>
-        // 합계 계산 함수
-        function calculateSum() {
-            // 가격, 수량, 배송비 가져오기
-            const price = parseFloat(document.getElementById('price').textContent); // 가격을 숫자로 변환
-            const quantity = parseInt(document.getElementById('quantity').value); // 수량을 정수로 변환
-            const deliveryFee = parseFloat(document.getElementById('delieveryfee').textContent); // 배송비를 숫자로 변환
+        window.onload = function() {
+            // 화면에는 포인트 적립률이 보이지 않도록
+            document.getElementById('point_rate').style.display = 'none';
+            // 가격과 포인트 비율에 따라 포인트를 자동으로 계산해주는 함수
+            function calculatePoint() {
+                const price = parseFloat(document.getElementById('price').textContent) || 0;  // 가격이 숫자인지 확인
+                const quantity = parseInt(document.getElementById('quantity').value) || 1;
+                const pointSelect = document.getElementById('point_rate');
+                const pointDisplay = document.getElementById('pointDisplay'); // 포인트를 화면에 표시할 요소
 
-            // 합계 계산
-            const total = (price * quantity) + deliveryFee;
+                // 가격 또는 포인트 비율이 변경될 때마다 계산
+                const pointRate = parseFloat(pointSelect.textContent) || 0; // 선택된 퍼센티지 값
+                const point = Math.floor(price * (pointRate / 100) * quantity);  // 가격의 선택된 퍼센트 * 수량
 
-            // 계산된 합계를 화면에 표시
-            document.getElementById('total').textContent = total.toLocaleString() + '원';
+                // 화면에 포인트 표시
+                pointDisplay.textContent = point + 'p';
+            }
+
+            // 합계 계산 함수
+            function calculateSum() {
+                // 가격, 수량, 배송비 가져오기
+                const price = parseFloat(document.getElementById('price').textContent) || 0; // 가격을 숫자로 변환
+                const quantity = parseInt(document.getElementById('quantity').value) || 1; // 수량을 정수로 변환
+                const deliveryFee = parseFloat(document.getElementById('delieveryfee').textContent) || 0; // 배송비를 숫자로 변환
+
+                // 합계 계산
+                const total = (price * quantity) + deliveryFee;
+
+                // 계산된 합계를 화면에 표시
+                document.getElementById('total').textContent = total.toLocaleString() + '원';
+            }
+
+            // 포인트 및 합계 계산 초기화
+            calculatePoint();
+            calculateSum();
+
+            // 수량이 변경될 때마다 합계 계산
+            document.getElementById('quantity').addEventListener('input', function(){
+                calculatePoint();
+                calculateSum();
+            });
         }
-
-        // 페이지 로드 시 기본 합계 계산
-        window.onload = calculateSum;
     </script>
 </head>
 <body>
@@ -64,7 +90,7 @@
                     </nav>
                     <h3>기본정보</h3>
                     <div class="product_info">
-                        <img th:src="@{'/MainImage/'+${product.img2}}" alt="30%세일 무농약재배" />
+                        <img th:src="@{'/productImg/'+${product.img2}}" alt="상품 기본 이미지" />
                         <div class="product_details">
                             <br>
                             <table>
@@ -78,15 +104,16 @@
                                 </tr>
                                 <tr>
                                     <th>배송비</th>
-                                    <td class="delivery" id="delieveryfee">[[${product.deliveryfee}]]<span id ="etc">&nbsp[[${product.etc}]]</span></td>
+                                    <td class="delivery" id="delieveryfee">[[${product.deliveryfee}]]원<span id ="etc">&nbsp;[[${product.etc}]]</span></td>
                                 </tr>
                                 <tr>
                                     <th>판매가격</th>
 
                                     <td class="sell_price">
                                         <span class="original_price">[[${product.price}]]</span><span class = "discountrate">[[${product.discount}]]%</span>
-                                        <span id="price">&nbsp;&nbsp;[[${product.price - product.price * product.discount / 100}]]</span>원</td>
+                                        <span id="price">&nbsp;[[${product.price - product.price * product.discount / 100}]]</span>원</td>
                                 </tr>
+
                                 <tr>
                                     <th>구매수량</th>
                                     <td class="count">
@@ -94,9 +121,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>합계</th>
-                                    <td class="sum" id="total">여기</td>
+                                    <th>적립 포인트</th>
+                                    <td>
+                                        <span id ="point_rate">[[${product.point}]]</span>
+                                        <span class="point" id="pointDisplay"></span>
+                                    </td>
                                 </tr>
+                                <tr>
+                                    <th>합계</th>
+                                    <td class="sum" id="total">total price</td>
+                                </tr>
+
                             </table>
                             <div class="buttons">
                                 <a th:href="@{/market/cart}" type="button" class="add_to_cart">장바구니</a>
@@ -105,7 +140,7 @@
                         </div> <!-- .product_info -->
                     </div>
                     <h3>상품설명</h3>
-                    <div class="sample"><img th:src="@{'/MainImage/'+${product.img3}}" alt="IMAGE SAMPLE"></div>
+                    <div class="sample"><img th:src="@{'/productImg/'+${product.img3}}" alt="상품 상세정보 이미지"></div>
                     <h3>배송정보</h3>
                     <p class="sms">입금하신 이후 택배송장번호는 SMS(문자서비스)를 통해 고객님께 안내해드립니다.</p>
                     <h3>교환/반품</h3>

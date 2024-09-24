@@ -75,7 +75,7 @@
                                 <tbody>
                                 <tr th:each="product : ${products}">
                                     <td><input type="checkbox" class="productCheckbox" th:value="${product.prodNo}"></td> <!-- 개별 체크박스 -->
-                                    <td><img th:src="@{'/MainImage/' + ${product.img1}}" id="product_img1" alt="샘플 이미지"></td>
+                                    <td><img th:src="@{'/productImg/' + ${product.img1}}" id="product_img1" alt="샘플 이미지"></td>
                                     <td>[[${product.prodNo}]]</td>
                                     <td><a th:href="@{'/market/view?prodNo=' + ${product.prodNo}}">[[${product.prodName}]]</a></td>
                                     <td>[[${product.type}]]</td>

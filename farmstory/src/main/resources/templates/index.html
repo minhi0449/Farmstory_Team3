@@ -32,7 +32,7 @@
                 <section class="market">
                     <article th:each="product: ${products}">
                         <a th:href="@{'/market/view?prodNo='+${product.prodNo}}">
-                            <img th:src="@{'/MainImage/'+${product.img1}}" alt="과일 샘플 이미지">
+                            <img th:src="@{'/productImg/'+${product.img1}}" alt="과일 샘플 이미지">
                             <div class="mtxt">
                                 <span class = "producttype">[[${product.type}]]</span>
                                 <p class="prodname">[[${product.prodName}]]</p>
