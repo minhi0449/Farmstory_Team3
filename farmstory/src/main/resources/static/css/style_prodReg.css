@@ -295,13 +295,15 @@ label {
 
 #point{
     width: 44px;
-    height: 18px;
+    height: 20px;
     border: 1px solid #767676;
     background: #efefef;
     text-indent: 3px;
     line-height: 18px;
 }
-
+#discountrate{
+    width :43px;
+}
 /* label */
 
 
@@ -354,7 +356,7 @@ input[type="checkbox"] {
     margin:0px;               /* Provide a slight margin between checkbox and text */
     padding-right: 0;                /* Remove any padding */
     width: 13px;                     /* Set the checkbox width */
-    height: 13px; 
+    height: 14px;
     background-color: #fff;    /* Set the background color of the checkbox */
     border: 1px solid #ccc;    /* Add a border to the checkbox */
     border-radius: 50%;                    /* Set the checkbox height */

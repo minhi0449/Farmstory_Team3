@@ -72,7 +72,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="product : ${products}">
-                                <td class="pic"><img th:src="@{'/MainImage/'+${product.img1}}" alt="상품 대표 이미지"></td>
+                                <td class="pic"><img th:src="@{'/productImg/'+${product.img1}}" alt="상품 대표 이미지"></td>
                                 <td class="type">[[${product.type}]]</td>
                                 <td class="pro_name"><a th:href="@{'/market/view?prodNo='+${product.prodNo}}">[[${product.prodName}]]</a></td>
                                 <td class="sale">[[${product.discount}]]%</td>

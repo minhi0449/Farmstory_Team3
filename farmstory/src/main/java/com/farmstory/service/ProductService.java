@@ -24,14 +24,15 @@ import java.util.UUID;
 
 public class ProductService {
 
+    @Value("${file.upload.path}")
+    private String uploadPath;
+
     private final ProductRepository productRepository;
-    // 윈도우 경로
-     public static String uploadDir = "C:\\Users\\lotte4\\Desktop\\Farmstory_Team3\\uploads\\MainImage\\";
-    // 맥 경로
-    // public static String uploadDir = "/Users/hwangsubin/Desktop/farm/uploads/MainImage/";
+
     @Transactional
     public void insertProduct(ProductDTO productDTO, MultipartFile[] images) {
-        log.info(uploadDir);
+        String path = new File(uploadPath).getAbsolutePath();
+        log.info(path);
 
         // images가 null이 아니고, 이미지가 있는 경우에만 처리
         if (images != null && images.length > 0) {
@@ -41,10 +42,11 @@ public class ProductService {
                 if (image != null && !image.isEmpty()) {
                     // 고유한 파일 이름 생성
                     String oName = image.getOriginalFilename();
-                    String sName = UUID.randomUUID().toString() + "_" + oName;
+                    String ext = oName.substring(oName.lastIndexOf("."));
+                    String sName = UUID.randomUUID().toString() + ext;
 
                     // 파일 저장 경로 설정
-                    File destFile = new File(uploadDir + sName);
+                    File destFile = new File(path , sName);
                     log.info(destFile);
 
                     try {
@@ -98,7 +100,13 @@ public class ProductService {
         }
         return null;
     }
+    public void updateModifyById(Integer prodNo, ProductDTO productDTO) {
+        Optional<Product> opt = productRepository.findById(prodNo);
+        if(opt.isPresent()) {
+            Product product = opt.get();
+        }
 
+    }
     public void deleteProductById(Integer prodNo) {
         productRepository.deleteById(prodNo);
 
