@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@ControllerAdvice(basePackages = "com.farmstory.apiController")
 public class GlobalExceptionHandler {
     // 모든 예외 처리 (catch-all)
     @ExceptionHandler(Exception.class)

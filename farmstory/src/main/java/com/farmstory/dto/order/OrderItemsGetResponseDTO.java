@@ -29,6 +29,7 @@ public class OrderItemsGetResponseDTO {
                 .discount(orderItem.getDiscount())
                 .deliveryfee(orderItem.getDeliveryfee())
                 .count(orderItem.getCount())
+                .productId(orderItem.getProduct().getProdNo())
                 .build();
     }
 }
