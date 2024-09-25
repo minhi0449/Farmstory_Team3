@@ -8,7 +8,29 @@
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/style_market_list.css}">
+    <script>
+        function calculatePoint() {
+            // 모든 제품의 가격 및 포인트 요소를 가져온다
+            const priceElements = document.querySelectorAll('.sell_price');
+            const pointElements = document.querySelectorAll('.point');
+            const pointDisplays = document.querySelectorAll('.pointDisplay');
 
+            // 각 제품에 대해 포인트를 계산
+            priceElements.forEach((priceElement, index) => {
+                const price = parseFloat(priceElement.textContent) || 0; // 가격이 숫자인지 확인
+                const pointRate = parseFloat(pointElements[index].textContent) || 0; // 포인트 비율 가져오기
+                const point = Math.floor(price * (pointRate / 100)); // 포인트 계산
+
+                // 화면에 포인트 표시
+                pointDisplays[index].textContent = point + 'p';
+                pointElements[index].style.display = 'none'; // 포인트 적립률 숨기기
+            });
+        }
+
+        window.onload = function() {
+            calculatePoint();
+        }
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -72,14 +94,21 @@
                             </thead>
                             <tbody>
                             <tr th:each="product : ${products}">
-                                <td class="pic"><img th:src="@{'/productImg/'+${product.img1}}" alt="상품 대표 이미지"></td>
+                                <td class="pic">
+                                    <img th:src="@{'/productImg/'+${product.img1}}" alt="상품 대표 이미지">
+                                </td>
                                 <td class="type">[[${product.type}]]</td>
-                                <td class="pro_name"><a th:href="@{'/market/view?prodNo='+${product.prodNo}}">[[${product.prodName}]]</a></td>
+                                <td class="pro_name">
+                                    <a th:href="@{'/market/view?prodNo='+${product.prodNo}}">[[${product.prodName}]]</a>
+                                </td>
                                 <td class="sale">[[${product.discount}]]%</td>
-                                <td class="point">[[${product.point}]]p</td>
+                                <td class ="pointDisplay">
+                                    <span class="point hidden-point">[[${product.point}]]</span>
+
+                                </td>
                                 <td class="price">
                                     <strong>
-                                        <span class="original_price">[[${product.price}]]</span><br/>
+                                        <span class="original_price">[[${product.price}]]</span><br />
                                         <span class="sell_price">[[${product.price - product.price * product.discount / 100}]]</span>원
                                     </strong>
                                 </td>
