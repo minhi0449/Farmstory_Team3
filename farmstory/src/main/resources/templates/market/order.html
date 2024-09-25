@@ -20,6 +20,7 @@
 
         window.onload = function () {
             this.saveSampleData();
+
             const receiverInput = document.querySelector(".receiver");
             const receiverHpInput = document.querySelector(".receiverHp");
             const pointInput = document.querySelector(".point");
@@ -103,7 +104,8 @@
                     img1: "market_item1.jpg",
                     img2: "img2",
                     img3: "img3",
-                    quantity: 2
+                    quantity: 2,
+                    productId: 22
                 },
                 {
                     id: 2,
@@ -116,7 +118,8 @@
                     img1: "market_item1.jpg",
                     img2: "img2",
                     img3: "img3",
-                    quantity: 1
+                    quantity: 1,
+                    productId: 23
                 }
             ];
 
@@ -211,7 +214,7 @@
                     discount: item.discount,      // 기존 discount 그대로 사용
                     deliveryfee: item.deliveryfee,// 기존 deliveryfee 그대로 사용
                     count: item.quantity,         // quantity를 count로 사용
-                    productId: item.id            // id를 productId로 사용
+                    productId: item.productId            // id를 productId로 사용
                 };
             });
         }
@@ -372,8 +375,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="etc">기타</th>
-                            <td><input type="textarea" class="" placeholder=""></td>
+                            <th>기타</th>
+                            <td><input type="textarea" class="etc" placeholder=""></td>
                         </tr>
                     </table>
                 </div> <!-- .order_info -->

@@ -10,6 +10,7 @@ import com.farmstory.repository.OrderItemRepository;
 import com.farmstory.repository.OrderRepository;
 import com.farmstory.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
@@ -63,7 +65,10 @@ public class OrderService {
         List<OrderItem> orderItems = orderDTO.getOrderItems().stream()
                 .map(orderItemDTO -> {
                     int productId = orderItemDTO.getProductId();
-                    Product findProduct = productRepository.findById(productId);
+                    log.info("productId: {}", productId);
+                    Product findProduct = productRepository.findById(Integer.valueOf(productId))
+                            .orElseThrow(() ->new IllegalArgumentException("해당하는 product가 없습니다."));
+
 
                     OrderItem orderItem = OrderItemCreateRequestDTO.toEntity(orderItemDTO);
                     orderItem.registerOrder(order); // OrderItem에 Order 설정
