@@ -143,7 +143,10 @@ td.pro_name {
     color: #111111;
 
 }
-
+.pointDisplay{
+    align-content: center;
+    text-align : center;
+}
 .price {
     text-align: center;
     
