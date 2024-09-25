@@ -110,7 +110,6 @@ class OrderServiceInteTest {
                 .build();
 
         productRepository.save(product);
-        System.out.println("==== product 생성 ====");
         OrderItem orderItem1 = OrderItem.builder()
                 .price(10000)
                 .point(100)

@@ -10,6 +10,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
-    @Query("SELECT oi FROM OrderItem oi WHERE oi.order.orderNo = :orderNo")
+    @Query("SELECT oi FROM OrderItem oi join fetch oi.product join fetch oi.order WHERE oi.order.orderNo = :orderNo")
     Page<OrderItem> findByOrderNo(@Param("orderNo") int orderNo, Pageable pageable);
 }
