@@ -16,6 +16,8 @@ public class UserDTO {
     private String uid;
     private String pass;
     private String nick;
+    private String name;
+    private String role;
     private String email;
     private String hp;
     private String grade; // 사용자 등급 (권한 | 사용자,관리자)
@@ -30,6 +32,8 @@ public class UserDTO {
         return User.builder()
                 .uid(uid)
                 .pass(pass)
+                .name(name)
+                .role(role)
                 .nick(nick)
                 .email(email)
                 .hp(hp)
