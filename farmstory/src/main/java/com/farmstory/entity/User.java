@@ -12,13 +12,15 @@ import lombok.*;
 @Entity                 // 엔티티 객체 정의
 @Builder
 @ToString
-@Table(name = "user")
+@Table(name = "User")
 public class User {
     @Id
     private String uid;
 
     private String pass;
     private String nick;
+    private String name;
+    private String role;
     private String email;
     private String hp;
     private String grade;
@@ -32,6 +34,8 @@ public class User {
     public UserDTO toDTO() {
         return UserDTO.builder()
                 .uid(uid)
+                .name(name)
+                .role(role)
                 .pass(pass)
                 .nick(nick)
                 .email(email)
