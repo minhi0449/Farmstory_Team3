@@ -8,10 +8,12 @@
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/common.css}">
     <link rel="stylesheet" th:href="@{/css/style_market_view.css}">
+    <script th:src="@{/js/utils.js}"></script>
     <script>
         window.onload = function() {
             // 화면에는 포인트 적립률이 보이지 않도록
             document.getElementById('point_rate').style.display = 'none';
+
             // 가격과 포인트 비율에 따라 포인트를 자동으로 계산해주는 함수
             function calculatePoint() {
                 const price = parseFloat(document.getElementById('price').textContent) || 0;  // 가격이 숫자인지 확인
@@ -46,10 +48,32 @@
             calculateSum();
 
             // 수량이 변경될 때마다 합계 계산
-            document.getElementById('quantity').addEventListener('input', function(){
+            document.getElementById('quantity').addEventListener('input', function () {
                 calculatePoint();
                 calculateSum();
+
             });
+
+            const addcart = document.getElementById('addcart');
+            addcart.onclick = async function (e) {
+                e.preventDefault();
+
+
+                const prodNo = document.getElementById('prodNo').textContent.trim();
+                const quantity = parseInt(document.getElementById('quantity').value);
+
+                console.log("quantity : " + quantity);
+
+                const JsonData = {
+                    "product_id": prodNo,
+                    "count": quantity
+
+                }
+                const data = await fetchPost('/farmstory/market/cart', JsonData)
+
+                console.log(data);
+            }
+
         }
     </script>
 </head>
@@ -96,11 +120,11 @@
                             <table>
                                 <tr>
                                     <th>상품명</th>
-                                    <td class="product">[[${product.prodName}]]</td>
+                                    <td class="product" id="prodName">[[${product.prodName}]]</td>
                                 </tr>
                                 <tr>
                                     <th>상품코드</th>
-                                    <td class="product">[[${product.prodNo}]]</td>
+                                    <td class="product" id="prodNo">[[${product.prodNo}]]</td>
                                 </tr>
                                 <tr>
                                     <th>배송비</th>
@@ -134,7 +158,7 @@
 
                             </table>
                             <div class="buttons">
-                                <a th:href="@{/market/cart}" type="button" class="add_to_cart">장바구니</a>
+                                <a th:href="@{/market/cart}" type="button" id ="addcart" class="add_to_cart">장바구니</a>
                                 <a href="#" type="button" class="buy_now">바로구매</a>
                             </div> <!-- .buttons -->
                         </div> <!-- .product_info -->
