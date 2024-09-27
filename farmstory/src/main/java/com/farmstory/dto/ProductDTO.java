@@ -1,6 +1,7 @@
 package com.farmstory.dto;
 
 import com.farmstory.entity.Product;
+import com.farmstory.entity.User;
 import jakarta.persistence.Column;
 import lombok.*;
 import org.hibernate.annotations.processing.Pattern;
@@ -40,8 +41,7 @@ public class ProductDTO {
 
     private String etc;
 
-   // private String uid;
-
+    private String uid;
     // 추가필드
     private List<MultipartFile> images;
 
