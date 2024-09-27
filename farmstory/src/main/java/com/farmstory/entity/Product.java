@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.text.Format;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -41,30 +42,36 @@ public class Product {
     private String regdate;
 
 
+    @ManyToOne
+    @JoinColumn(name = "user_uid")
+    @ToString.Exclude
+    private User user;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_uid")
-//    @ToString.Exclude
-//    private User user;
+//    @OneToMany(mappedBy="prodNo")
+//    private List<ProdImage> prodImage;
 
-public ProductDTO toDTO(){
+    public ProductDTO toDTO() {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    return ProductDTO.builder()
-            .prodNo(prodNo)
-            .prodName(prodName)
-            .type(type)
-            .price(price)
-            .discount(discount)
-            .deliveryfee(deliveryfee)
-            .stock(stock)
-            .point(point)
-            .img1(img1)
-            .img2(img2)
-            .img3(img3)
-            .regdate(regdate.substring(0,19))
-            .etc(etc)
-            .build();
-}
+        return ProductDTO.builder()
+                .prodNo(prodNo)
+                .prodName(prodName)
+                .type(type)
+                .price(price)
+                .discount(discount)
+                .deliveryfee(deliveryfee)
+                .stock(stock)
+                .point(point)
+                .img1(img1)
+                .img2(img2)
+                .img3(img3)
+                .regdate(regdate.substring(0, 19))
+                .etc(etc)
+                .build();
+    }
+
+    public void addUser(User user) {
+        this.user = user;
+    }
 }

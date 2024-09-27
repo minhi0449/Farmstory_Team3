@@ -33,7 +33,7 @@
                             <div class="main_top"><h2>상품등록</h2></div>
                             <div class="reg_table">
                                 <table id="product">
-                                    <input type="text" name="uid" value="A101" readonly>
+                                    <input type="text" name="uid" value="farmstory" readonly>
                                     <tr>
                                         <th>상품명</th>
                                         <td><input type="text" name="prodName"/></td>
@@ -70,7 +70,6 @@
                                     </tr>
                                     <tr>
                                         <th>배송비</th>
-
                                         <td>
                                             <label>
                                                 <input type="radio" name="deliveryfee" id="check2" value="2000" th:checked="${deliveryfee == 2000}"/> 2000원
@@ -84,6 +83,18 @@
                                             <label>
                                                 <input type="radio" name="deliveryfee" id="check1" value="0" th:checked="${deliveryfee == 0}"/> 무료
                                             </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>무료배송조건</th>
+                                        <td>
+                                            <select name="etc" id="condition" >
+                                                <option value="condition">무료 배송 조건</option>
+                                                <option value="30000">3만원 이상 무료배송</option>
+                                                <option value="50000">5만원 이상 무료배송</option>
+                                                <option value="70000">10만원 이상 무료배송</option>
+                                            </select>
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -120,10 +131,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th>기타</th>
-                                        <td><input type="text" name="etc"/></td>
-                                    </tr>
+
                                 </table>
                                 <div class="btn_group_register">
                                     <button type="submit" class ="insertbtn">상품등록</button>

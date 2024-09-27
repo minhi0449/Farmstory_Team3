@@ -40,6 +40,15 @@ public class UserService {
     }
 
 
+    public User selectUserEntity(String uid) {
+        Optional<User> optUser = userRepository.findById(uid);
+        if(optUser.isPresent()) {
+            User user = optUser.get();
+            return user;
+        }
+        return null;
+    }
+
 
     public UserDTO selectUser(String uid) {
         Optional<User> optUser = userRepository.findById(uid);
