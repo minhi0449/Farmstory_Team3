@@ -63,7 +63,7 @@ public class OrderService {
 
         // 2. 주문의 OrderItem을 반복
         orderDTO.getOrderItems().forEach(orderItemDto -> {
-            // orderItemDto의 productId로 제품을 가져온다
+            // orderItemDto의 productId로 제품을 가져온다\
             Product product = productRepository.findById(Integer.valueOf(orderItemDto.getProductId()))
                     .orElseThrow(() -> new IllegalArgumentException("해당하는 product가 없습니다."));
 
@@ -81,10 +81,6 @@ public class OrderService {
         });
 
 
-
-
-
-        // TODO: 주문수에 따라 product재고 감소 재고가 부족하면 Exception
         // TODO: 사용자의 포인트도 수정
 
         return order.getOrderNo();

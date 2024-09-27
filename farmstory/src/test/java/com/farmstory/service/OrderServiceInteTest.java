@@ -44,7 +44,7 @@ class OrderServiceInteTest {
     void createOrder_shouldSaveOrder() {
         // Given
         OrderCreateRequestDTO orderCreateRequestDTO = createSampleDtoData();
-        productRepository.save(Product.builder().prodNo(1).build());
+        productRepository.save(Product.builder().prodNo(1).stock(4).build());
 
         // When
         int orderId = orderService.createOrder(orderCreateRequestDTO);
