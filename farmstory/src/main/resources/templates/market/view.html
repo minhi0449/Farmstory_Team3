@@ -72,6 +72,7 @@
 
             });
 
+            // 상품을 장바구니에 담기
             const addcart = document.getElementById('addcart');
             addcart.onclick = async function (e) {
                 e.preventDefault();
@@ -90,6 +91,19 @@
                 const data = await fetchPost('/farmstory/market/cart', JsonData)
 
                 console.log(data);
+                if(data.count > 0){
+                    const moveCart = confirm('상품이 담겼습니다. 장바구니로 이동하시겠습니까?');
+                    if(moveCart){
+                        window.location.href = `/farmstory/market/cart?uid=`+data.uid;
+                    }else {
+                        // 이동하지 않았을때 1개의 구매수량에 대한 적립 포인트, 합계를 화면에 표시
+                        console.log('장바구니로 이동하지 않음');
+                        document.getElementById('quantity').value = '1';
+                        calculatePoint();
+                        calculateSum();
+
+                    }
+                }
             }
 
         }
