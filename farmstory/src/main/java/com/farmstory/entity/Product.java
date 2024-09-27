@@ -1,6 +1,7 @@
 package com.farmstory.entity;
 
 import com.farmstory.dto.ProductDTO;
+import com.farmstory.exception.OutOfStockException;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.text.Format;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -49,6 +49,18 @@ public class Product {
 
 //    @OneToMany(mappedBy="prodNo")
 //    private List<ProdImage> prodImage;
+
+    public void increaseStock(int num) {
+        this.stock += num;
+    }
+
+    public void decreaseStock(int num) {
+        if (this.stock - num < 0) {
+            throw new OutOfStockException("상품의 재고가 부족합니다.");
+        }
+
+        this.stock -= num;
+    }
 
     public ProductDTO toDTO() {
 

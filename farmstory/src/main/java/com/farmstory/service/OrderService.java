@@ -61,24 +61,28 @@ public class OrderService {
 
 
 
-        // 2. OrderItem 생성 및 Order와의 관계 설정
-        List<OrderItem> orderItems = orderDTO.getOrderItems().stream()
-                .map(orderItemDTO -> {
-                    int productId = orderItemDTO.getProductId();
-                    log.info("productId: {}", productId);
-                    Product findProduct = productRepository.findById(Integer.valueOf(productId))
-                            .orElseThrow(() ->new IllegalArgumentException("해당하는 product가 없습니다."));
+        // 2. 주문의 OrderItem을 반복
+        orderDTO.getOrderItems().forEach(orderItemDto -> {
+            // orderItemDto의 productId로 제품을 가져온다
+            Product product = productRepository.findById(Integer.valueOf(orderItemDto.getProductId()))
+                    .orElseThrow(() -> new IllegalArgumentException("해당하는 product가 없습니다."));
+
+            // 제품의 재고를 줄인다
+            product.decreaseStock(orderItemDto.getCount());
 
 
-                    OrderItem orderItem = OrderItemCreateRequestDTO.toEntity(orderItemDTO);
-                    orderItem.registerOrder(order); // OrderItem에 Order 설정
-                    orderItem.registerProduct(findProduct); // OrderItem에
-                    return orderItem;
-                })
-                .collect(Collectors.toList());
+            // 주문 아이템을 엔티티로 변환 후 주문과 제품의 관계를 연결한다.
+            OrderItem orderItem = orderItemDto.toEntity();
+            orderItem.registerOrder(order);
+            orderItem.registerProduct(product);
 
-        // 3. OrderItem 저장
-        orderItemRepository.saveAll(orderItems);
+            // 주문 아이템을 생성
+            orderItemRepository.save(orderItem);
+        });
+
+
+
+
 
         // TODO: 주문수에 따라 product재고 감소 재고가 부족하면 Exception
         // TODO: 사용자의 포인트도 수정

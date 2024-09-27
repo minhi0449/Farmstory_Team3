@@ -18,13 +18,13 @@ public class OrderItemCreateRequestDTO {
     private int count;
     private int productId;
 
-    public static OrderItem toEntity(OrderItemCreateRequestDTO dto) {
+    public  OrderItem toEntity() {
         return OrderItem.builder()
-                .price(dto.getPrice())
-                .point(dto.getPoint())
-                .discount(dto.getDiscount())
-                .deliveryfee(dto.getDeliveryfee())
-                .count(dto.getCount())
+                .price(this.getPrice())
+                .point(this.getPoint())
+                .discount(this.getDiscount())
+                .deliveryfee(this.getDeliveryfee())
+                .count(this.getCount())
                 .build();
     }
 }
