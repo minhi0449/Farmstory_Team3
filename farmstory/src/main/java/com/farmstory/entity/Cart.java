@@ -1,7 +1,9 @@
 package com.farmstory.entity;
 
+import com.farmstory.dto.CartRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
 
 @Getter
 @NoArgsConstructor
@@ -25,8 +27,26 @@ public class Cart {
         this.product = product;
     }
 
+    public CartRequestDTO toDTO(){
+        return CartRequestDTO.builder()
+                .product_id(product.getProdNo())
+                .count(count)
+                .build();
+    }
 //    @ManyToOne
 //    @JoinColumn(name = "uid")
 //    private User user;
+    public void changeProduct (Product product) {
+        this.product = product;
+    }
+    public void changeCount(int count) {
+        this.count = count;
+    }
+    public void increaseCount(int num) {
+        this.count += num;
+    }
 
+    public void decreaseCount(int num) {
+        this.count -= num;
+    }
 }
