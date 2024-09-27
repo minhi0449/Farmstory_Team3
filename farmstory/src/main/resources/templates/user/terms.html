@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
-        <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/header.css">
-        <link rel="stylesheet" href="../css/common.css">
-        <link rel="stylesheet" href="../css/user/terms.css">
-        <link rel="stylesheet" href="../css/footer.css">
+        <link rel="shortcut icon" th:href="@{images/fav.ico}" type="image/x-icon">
+        <link rel="stylesheet" th:href="@{/css/reset.css}">
+        <link rel="stylesheet" th:href="@{/css/header.css}">
+        <link rel="stylesheet" th:href="@{/css/common.css}">
+        <link rel="stylesheet" th:href="@{/css/user/terms.css}">
+        <link rel="stylesheet" th:href="@{/css/footer.css}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms</title>
     <!-- 
@@ -18,7 +18,7 @@
 <body>
     <div id="wrapper">
 
-        <th:block th:include ="/include/header.html"/>
+        <th:block th:include ="~{/include/header.html}"/>
 
         <!-- main -->
         <main>
@@ -41,14 +41,14 @@
                             <td>
                                 <textarea readonly>개인정보 내용</textarea>
                                 <p>
-                                    <label><input type="checkbox" name="chk2"/>동의합니다.</label>
+                                    <label><input type="checkbox" name="chk2"/>&nbsp;동의합니다.</label>
                                 </p>
                             </td>
                         </tr>
                     </table>
                     <div>
-                        <a href="#" class="btnCancel">취소</a>
-                        <a href="#" class="btnNext">다음</a>
+                        <a th:href="@{/user/login}" class="btnCancel">취소</a>
+                        <a th:href="@{/user/register}" class="btnNext">다음</a>
                     </div>
                 </section>
             </div><!--mainIn-->

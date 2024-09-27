@@ -1,14 +1,25 @@
 package com.farmstory.service;
 
+import com.farmstory.dto.TermsDTO;
 import com.farmstory.dto.UserDTO;
+import com.farmstory.entity.Terms;
 import com.farmstory.entity.User;
+import com.farmstory.repository.TermsRepository;
 import com.farmstory.repository.UserRepository;
+import jakarta.mail.Message;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -16,17 +27,17 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-    // private final PasswordEncoder passwordEncoder;
+    private final TermsRepository termsRepository;
+    private final JavaMailSender javaMailSender;
+    private final PasswordEncoder passwordEncoder;
 
+    // user
     public void insertUser(UserDTO userDTO) {
-        // 회원가입
-        // String encoded = passEncoder.encode(userDTO.getPass()); // 비밀번호 암호화
-        // userDTO.setPass(encoded);
 
-        User user = userDTO.toEntity();
-        userRepository.save(user);
+        String encoded = passwordEncoder.encode(userDTO.getPass());
+        userDTO.setPass(encoded);
+        userRepository.save(userDTO.toEntity());
     }
-
 
     public UserDTO loginUser(UserDTO userDTO) {
         Optional<User> opt = userRepository
@@ -38,8 +49,6 @@ public class UserService {
         }
         return null;
     }
-
-
 
     public UserDTO selectUser(String uid) {
         Optional<User> optUser = userRepository.findById(uid);
@@ -54,5 +63,74 @@ public class UserService {
         List<User> users = userRepository.findAll();
         return null;
     }
+
+    // terms
+    public TermsDTO selectTerms(){
+        List<Terms> termsList = termsRepository.findAll();
+        return termsList.get(0).toDTO();
+    }
+
+    public int selectCountUser(String type, String value){
+
+        int count = 0;
+
+        if(type.equals("uid")){
+            count = userRepository.countByUid(value);
+        }else if(type.equals("nick")){
+            count = userRepository.countByNick(value);
+        }else if(type.equals("hp")){
+            count = userRepository.countByHp(value);
+        }else if(type.equals("email")){
+            count = userRepository.countByEmail(value);
+        }
+        return count;
+    }
+
+
+    public void updateUser(){
+
+    }
+
+    public void deleteUser(){
+
+    }
+
+
+
+
+    /*
+        - build.gradle 파일에 spring-boot-starter-mail 의존성 추가 할것
+        - application.yml 파일 spring email 관련 설정
+     */
+    @Value("${spring.mail.username}")
+    private String sender;
+    public void sendEmailCode(HttpSession session, String receiver){
+
+        log.info("sender : " + sender);
+
+        // MimeMessage 생성
+        MimeMessage message = javaMailSender.createMimeMessage();
+
+        // 인증코드 생성 후 세션 저장
+        int code = ThreadLocalRandom.current().nextInt(100000, 1000000);
+        session.setAttribute("code", String.valueOf(code));
+        log.info("code : " + code);
+
+        String title = "farmstory 인증코드 입니다.";
+        String content = "<h1>인증코드는 " + code + "입니다.</h1>";
+
+        try {
+            message.setFrom(new InternetAddress(sender, "보내는 사람", "UTF-8"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+            message.setSubject(title);
+            message.setContent(content, "text/html;charset=UTF-8");
+
+            // 메일 발송
+            javaMailSender.send(message);
+        }catch(Exception e){
+            log.error("sendEmailConde : " + e.getMessage());
+        }
+    }
+
 
 }
