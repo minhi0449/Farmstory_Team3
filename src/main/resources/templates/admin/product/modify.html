@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style_prodMody.css}">
+    <title>PRODUCT::Modify</title>
+    <script>
+        // 선택된 파일의 이름 뜨는 코드 및 이미지 처리
+        function updateFileName(input, fileNameId, imgId) {
+            const fileNameDisplay = document.getElementById(fileNameId);
+            const imgDisplay = document.getElementById(imgId);
+
+            if (input.files.length > 0) {
+                fileNameDisplay.textContent = input.files[0].name; // 선택된 파일 이름 업데이트
+                imgDisplay.style.display = 'none'; // 기존 이미지 숨김
+            } else {
+                fileNameDisplay.textContent = 'No file chosen'; // 파일이 선택되지 않은 경우
+                imgDisplay.style.display = 'block'; // 기존 이미지 다시 표시
+            }
+        }
+
+        function deletePicture(imgId){
+            console.log(imgId)
+            const imgDisplay = document.getElementById(imgId);
+            console.log(imgDisplay)
+            imgDisplay.style.display = 'none'; // 기존 이미지 숨김
+        }
+        // 파일 선택 취소시 원래 이미지 표시
+        function resetFile(input, fileNameId, imgId) {
+            input.value = ""; // 파일 선택 초기화
+            updateFileName(input, fileNameId, imgId); // 파일 이름과 이미지 다시 업데이트
+        }
+
+    </script>
+</head>
+
+<body>
+<!-- wrapper -->
+<div id="wrapper">
+    <th:block th:insert ="~{/admin/include/header.html}"/>
+
+    <main>
+        <div class="mainIn register">
+            <th:block th:insert ="~{/admin/include/aside.html}"/>
+            <div class="section list">
+                <section>
+                    <form th:action="@{/admin/product/modify}" method="post" enctype="multipart/form-data">
+                        <div class="main_container">
+                            <div class="main_top"><h2>상품수정</h2></div>
+                            <div class="reg_table">
+                                <table id="product">
+                                    <input type="hidden" name="prodNo" th:value="${product.prodNo}">
+                                    <input type="hidden" name="img1sName" th:value="${product.img1}">
+                                    <input type="hidden" name="img2sName" th:value="${product.img2}">
+                                    <input type="hidden" name="img3sName" th:value="${product.img3}">
+
+                                    <input type="text" name="uid" value="ghkdtnqls95" readonly>
+                                    <tr>
+                                        <th>상품명</th>
+                                        <td><input type="text" name="prodName" th:value ="${product.prodName}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>종류</th>
+                                        <td>
+                                            <select name="type" id="type" th:field="*{product.type}">
+                                                <option value="과자" th:selected="${product.type == '과자'}">과자</option>
+                                                <option value="과일" th:selected="${product.type == '과일'}">과일</option>
+                                                <option value="채소" th:selected="${product.type == '채소'}">채소</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>가격</th>
+                                        <td><input type="number" name="price" step="100" th:value="${product.price}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>포인트</th>
+                                        <td>
+                                            <select name="pointRate" id="point"  th:field="*{product.point}">
+                                                <option value="1" th:selected="${product.point == '1'}">1%</option>
+                                                <option value="3" th:selected="${product.point == '3'}">3%</option>
+                                                <option value="5" th:selected="${product.point == '5'}">5%</option>
+                                            </select>
+                                            <input type="hidden" name="calculatedPoint" id="calculatedPoint" value="0"> <!-- 서버로 전송할 계산된 포인트 값 -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>할인율</th>
+                                        <td><input type="number" id ="discountrate" name="discount" th:value="${product.discount}" min="0" max="100"/>&nbsp;%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>배송비</th>
+
+                                        <td>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check2" value="2000" th:checked="${product.deliveryfee == 2000}"/> 2000원
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check3" value="3000" th:checked="${product.deliveryfee  == 3000}"/> 3000원
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check4"  value="5000" th:checked="${product.deliveryfee  == 5000}"/> 5000원
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check1" value="0" th:checked="${product.deliveryfee  == 0}"/> 무료
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>무료배송조건</th>
+                                        <td>
+                                            <select name="etc" id="condition" th:field="*{product.etc}">
+                                                <option value="condition">무료 배송 조건</option>
+                                                <option value="30000" th:selected ="${product.etc == 30000}">3만원 이상 무료배송</option>
+                                                <option value="50000" th:selected ="${product.etc == 50000}">5만원 이상 무료배송</option>
+                                                <option value="70000" th:selected ="${product.etc == 70000}">10만원 이상 무료배송</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>재고</th>
+                                        <td><input type="number" name="stock" th:value="${product.stock}" /></td>
+                                    </tr>
+                                    <tr class="file_upload_tr">
+                                        <th>상품이미지</th>
+                                        <td>
+                                            <div class="file_upload_form">
+                                                <div class="file_group">
+                                                    <label for="product_list_image">상품목록 이미지(약 120 × 120)</label>
+                                                    <th:block th:if="${product.img1 != null}">
+                                                        <img th:src="@{'/productImg/' + ${product.img1}}" id="img1" alt="상품 설명 이미지" width="120">
+                                                    </th:block>
+                                                    <div class="cf_input">
+                                                        <input type="file" class="ci" id="product_list_image" name="images" onchange="updateFileName(this, 'fileName1', 'img1')">
+                                                        <span>Choose File</span>
+                                                        <p id="fileName1">No file chosen</p>
+                                                        <button type="button" class= "imagDelBtn" onclick="deletePicture('img1')">기존 이미지 삭제</button>
+                                                        <button type="button" class= "cancelUploadBtn" onclick="resetFile(document.getElementById('product_list_image'), 'fileName1', 'img1')">업로드 취소</button> <!-- 파일 취소 버튼 -->
+                                                    </div>
+                                                </div>
+
+                                                <div class="file_group">
+                                                    <label for="basic_info_image">기본정보 이미지(약 240 × 240)</label>
+                                                    <th:block th:if="${product.img2 != null}">
+                                                        <img th:src="@{'/productImg/' + ${product.img2}}" id="img2" alt="상품 설명 이미지" width="120">
+                                                    </th:block>
+                                                    <div class="cf_input">
+                                                        <input type="file" id="basic_info_image" name="images" onchange="updateFileName(this, 'fileName2', 'img2')">
+                                                        <span>Choose File</span>
+                                                        <p id="fileName2">No file chosen</p>
+                                                        <button type="button" class= "imagDelBtn" onclick="deletePicture('img2')">기존 이미지 삭제</button>
+                                                        <button type="button" class= "cancelUploadBtn" onclick="resetFile(document.getElementById('basic_info_image'), 'fileName2', 'img2')">업로드 취소</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="file_group">
+                                                    <label for="product_description_image">상품설명 이미지(약 750 × Auto)</label>
+                                                    <th:block th:if="${product.img3 != null}">
+                                                        <img th:src="@{'/productImg/' + ${product.img3}}" id="img3" alt="상품 설명 이미지" width="120">
+                                                    </th:block>
+                                                    <div class="cf_input">
+                                                        <input type="file" id="product_description_image" name="images" onchange="updateFileName(this, 'fileName3', 'img3')">
+                                                        <span>Choose File</span>
+                                                        <p id="fileName3">No file chosen</p>
+                                                        <button type="button" class= "imagDelBtn" onclick="deletePicture('img3')">기존 이미지 삭제</button>
+                                                        <button type="button" class= "cancelUploadBtn" onclick="resetFile(document.getElementById('product_description_image'), 'fileName3', 'img3')">업로드 취소</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <div class="btn_group_register">
+                                    <button type="submit" class ="insertbtn" >상품수정</button>
+                                    <a th:href="@{/admin/product/list}" class="cancelbtn">취소</a>
+                                </div><!--btn_group end-->
+                            </div><!--status-table end-->
+                        </div><!--main-container-->
+                    </form><!-- form end-->
+                </section><!-- section end-->
+            </div><!-- .section end-->
+        </div><!--mainIn-->
+    </main><!--main end-->
+
+    <th:block th:insert ="~{/admin/include/footer.html}"/>
+</div> <!--wrapper end-->
+</body>
+</html>

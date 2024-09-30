@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/images/fav.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/user/login.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+
+        const success= '${success}';
+        console.log('success : ' + success);
+        const loginError = '${loginError}'; // 서버에서 전달된 loginError 메시지
+        console.log('loginError : ' + loginError);
+
+        if(success==100){
+            console.log('success : ' + success);
+            alert('로그인에 실패했습니다.\n다시 시도해주세요');
+        }else if(success==101) {
+            alert('성공적으로 로그아웃 되었습니다.');
+        }
+
+        if (loginError==103) {
+            alert('아이디 또는 비밀번호가 잘못되었습니다.'); // "아이디 또는 비밀번호가 잘못되었습니다." 메시지 출력
+        }
+
+    </script>
+    <!-- 
+        작업내용 
+        2024/08/26  하진희 login html, css update
+    -->
+</head>
+<body>
+    <div id="wrapper">
+
+        <th:block th:include ="/include/header.html"/>
+        <main>
+            <div class="mainIn">
+                <section class="login">
+                    <form th:action="@{/user/login}" method="post" name="loginForm">
+                        <table border="0">
+                            <tr>
+                                <td><img th:src="@{/images/login_ico_id.png}" alt="아이디"></td>
+                                <td><input type="text" name="uid" placeholder="아이디 입력"></td>
+                            </tr>
+                            <tr>
+                                <td><img th:src="@{/images/login_ico_pw.png}" alt="비밀번호"></td>
+                                <td><input type="password" name="pass" placeholder="비밀번호 입력"></td>
+                            </tr>
+                        </table>
+                        <input type="submit" value="로그인" class="btnLogin">
+                    </form>
+                    <div>
+                        <h3>회원 로그인 안내</h3>
+                        <p>
+                            아직 회원이 아니시면 회원으로 가입하세요.
+                        </p>
+                        <a th:href="@{/user/terms}">&nbsp;회원가입</a>
+                        <a th:href="@{/user/findPass}">&nbsp;비밀번호 찾기&nbsp;|&nbsp;</a>
+                        <a th:href="@{/user/findId}">아이디 찾기&nbsp;|&nbsp;</a>
+                    </div>
+                </section>
+            </div><!--mainIn-->
+        </main><!--main end-->
+
+        <th:block th:insert ="~{/include/footer.html}"/>
+
+    </div><!--wrapper end-->
+    
+</body>
+</html>

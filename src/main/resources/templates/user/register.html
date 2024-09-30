@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{/images/fav.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/user/register.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/js/validation.js}"></script>
+    <script th:src="@{/js/util.js}"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>Register</title>
+</head>
+<body>
+    <div id="wrapper">
+        <th:block th:include ="~{/include/header.html}"/>
+        <!-- main -->
+        <main>
+            <div class="mainIn">
+                <section class="register">
+                    <form th:action="@{/user/register}" method="post">
+                        <table border="1">
+                            <caption>사이트 이용정보 입력</caption>
+                            <tr>
+                                <td>아이디</td>
+                                <td>
+                                    <input type="text" name="uid" class="inputUid" placeholder="아이디 입력"/>
+                                    <button type="button" id="btnCheckUid" data-type="uid"><img th:src="@{/images/chk_id.gif}" alt="중복확인"></button>
+                                    <span id="resultUid" class="resultId"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>비밀번호</td>
+                                <td>
+                                    <input type="password" name="pass" class="inputPass" placeholder="비밀번호 입력"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>비밀번호 확인</td>
+                                <td>
+                                    <input type="password" name="pass2" class="inputPass" placeholder="비밀번호 확인 입력"/>
+                                    <span id="resultPass" class="resultPass"></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table border="1">
+                            <caption>개인정보 입력</caption>
+                            <tr>
+                                <td>이름</td>
+                                <td>
+                                    <input type="text" name="name" class="inputName" placeholder="이름 입력"/>
+                                    <span id="resultName"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>별명</td>
+                                <td>
+                                    <p class="nickInfo">공백없이 한글, 영문, 숫자만 입력가능</p>
+                                    <input type="text" name="nick" class="inputNick" placeholder="별명 입력"/>
+                                    <button type="button" id="btnCheckNick" data-type="nick"><img th:src="@{/images/chk_id.gif}" alt="중복확인"/></button>
+                                    <span id="resultNick" class="resultNick"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>E-Mail</td>
+                                <td>
+                                    <input type="email" name="email" class="inputEmail" placeholder="이메일 입력"/>
+                                    <button type="button" id="btnCheckEmail" data-type="email"><img th:src="@{/images/chk_auth.gif}" alt="인증번호 받기"/></button>
+                                    <span id="resultEmail"></span>
+                                    <div class="auth">
+                                        <input type="text" name="auth" class="inputEmailCode" placeholder="인증번호 입력"/>
+                                        <button type="button" id="btnCheckEmailCode"><img th:src="@{/images/chk_confirm.gif}" alt="확인"/></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>휴대폰</td>
+                                <td>
+                                    <input type="text" name="hp" class="inputHp" placeholder="- 포함 13자리 입력" minlength="13" maxlength="13" />
+                                    <button type="button" id="btnCheckHp" data-type="hp"><img th:src="@{/images/chk_id.gif}" alt="중복확인"/></button>
+                                    <span id="resultHp"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>주소</td>
+                                <td>
+                                    <input type="text" name="zip" id="inputZip" placeholder="우편번호" readonly/>
+                                    <button type="button" id="btnZip" class="btnZip" onclick="postcode()"><img th:src="@{/images/chk_post.gif}" alt="우편번호"></button>
+                                    <input type="text" name="addr1" id="inputAddr1" placeholder="주소를 검색하세요." readonly/>
+                                    <input type="text" name="addr2" id="inputAddr2" placeholder="상세주소를 입력하세요."/>
+                                </td>
+                            </tr>
+                        </table>
+        
+                        <div>
+                            <a th:href="@{/user/login}" class="btn btnCancel">취소</a>
+                            <input type="submit" class="btn btnSubmit" value="회원가입"/>
+                        </div>    
+                    </form>
+                </section>
+            </div><!--mainIn-->
+        </main> <!-- main end -->
+
+        <th:block th:insert ="~{/include/footer.html}"/>
+
+    </div><!--wrapper end-->
+    
+</body>
+</html>

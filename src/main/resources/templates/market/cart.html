@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니</title>
+    <link rel="shortcut icon" th:href="@{/images/fav.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/style_cart.css}">
+</head>
+<body>
+
+    <th:block th:include ="./include/header.html"/>
+
+    <!-- #main -->
+    <main id="main" class="cf">
+        <section class="mainIn cf">
+            <div class="sub_bg">
+                <img src="../images/sub_top_tit2.png" alt="MARKET" class="sub_tit">
+            </div><!-- .sub_bg -->
+
+            <aside class="aside">
+                <div class="sidebar">
+                    <div class="aside_cate">
+                        <img src="../images/sub_aside_cate2_tit.png" alt="Buying in the Market 장보기">
+                    </div><!-- .aside_cate -->
+                    <div class="aside_bg">
+                        <ul class="cate_lnb">
+                            <li> <a href="#">장보기</a></li>
+                        </ul><!-- .cate_lnb -->
+                    </div><!-- .aside_bg -->
+                </div><!-- .sidebar -->
+            </aside><!-- .aside -->
+            <article class="article">
+                <div class="articleIn cf">
+                    <nav>
+                        <h2><img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기"></h2>
+                        <p class="location">
+                            <img src="../images/sub_page_nav_ico.gif" alt="메뉴">
+                            <span>HOME </span>
+                            <span>장보기 </span>
+                            <strong>장보기</strong> 
+                        </p><!-- .location -->
+                    </nav>
+                    
+                    <h3 class="tb_tit">장바구니 전체(10)</h3><!-- .tb_tit -->
+                    <table class="tb1">
+                        <colgroup>
+                            <col style="width: 11%">
+                            <col style="width: 5%">
+                            <col style="width: 10%">
+                            <col style="width: 15%">
+                            <col style="width: 10%">
+                            <col style="width: 10%">
+                            <col style="width: 10%">
+                            <col style="width: 10%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <tr>
+                            <th><input type="checkbox" class="checkbox"/></th>
+                            <th>이미지</th>
+                            <th>종류</th>
+                            <th>상품명</th>
+                            <th>수량</th>
+                            <th>할인</th>
+                            <th>포인트</th>
+                            <th>가격</th>
+                            <th>소계</th>
+                        </tr>
+                        <tr>
+                            <td colspan="9" class="td_first">장바구니에 상품이 없습니다.</td>
+                        </tr>
+                        <tr th:each="carts:${cart}" >
+                            <td><input type="checkbox" class="checkbox"/></td>
+                            <td><img th:src="@{'/productImg/'+${carts.product.img1}}" alt="사과샘플" /></td>
+                            <td th:text="${carts.product.type}"></td>
+                            <td th:text="${carts.product.prodName}">사과 500g</td>
+                            <td >1</td>
+                            <td th:text="${carts.product.discount} + '%'"></td>
+                            <td>적립되는 포인트</td>
+                            <td th:text="${carts.product.price} + '원'"></td>
+                            <td><strong>total값</strong>원</td>
+                        </tr>
+                    </table><!-- .tb1 -->
+                    <button class="btnSD"><a href="#">선택삭제</a></button>
+                    <div class="order_final">
+                        <table class="tb2">
+                            <tr>
+                                <th colspan="2">전체합계</th>
+                            </tr>
+                            <tr>
+                                <td>상품수</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>상품금액</td>
+                                <td>27,000</td>
+                            </tr>
+                            <tr>
+                                <td>할인금액</td>
+                                <td>5,0000원</td>
+                            </tr>
+                            <tr>
+                                <td>배송비</td>
+                                <td>5,0000원</td>
+                            </tr>
+                            <tr>
+                                <td>포인트</td>
+                                <td>4,000원</td>
+                            </tr>
+                            <tr>
+                                <td>전체주문금액</td>
+                                <td>22,000</td>
+                            </tr>
+                        </table><!-- .tb2 -->
+                        <button class="btn_order"><a th:href="@{/market/order}">주문하기</a></button>
+                    </div><!-- .order_final -->
+
+                </div><!-- .articleIn -->
+            </article><!-- .article -->
+        </section>
+    </main><!-- #main -->
+    
+    <footer id="footer">
+        <div class="footerIn cf">
+        <img src="../images/footer_logo.png" alt="farmStory footer" class="flogo">
+        <div class="finfo">
+            <span class="tel">(주)팜스토리 / 사업자등록번호 123-45-67890 / 통신판매업신고 제 2013-팜스토리구-123호 / 벤처기업확인 서울지방중소기업청 제 012345678-9-01234호<br>
+                등록번호 팜스토리01234 (2013.04.01) / 발행인 : 홍길동 <br>
+                대표 : 홍길동 / 이메일 : email@mail.mail / 전화 : 01&#41; 234-5678 / 경기도 성남시 잘한다구 신난다동 345
+            </span><!-- .tel -->
+            <p class="fcopy">Copyright(C)홍길동 All rights reserved.</p><!-- .fcopy -->
+        </div><!-- .finfo -->
+        </div><!-- .footerIn -->
+    </footer><!-- footer -->
+</body>
+</html>

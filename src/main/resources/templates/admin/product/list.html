@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style_admin.css}">
+    <title>PRODUCT::LIST</title>
+    <script>
+        // 체크박스 전체 선택, 전체 해제
+        function toggleCheckboxes(checkAllBox) { // checkAllBox의 체크 상태를 확인하고
+            const checkboxes = document.querySelectorAll('.productCheckbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = checkAllBox.checked; // checkAllBox가 체크되었는지에 따라 상태 변경
+            });
+        }
+
+        // 선택된 체크박스 삭제
+        function deleteSelected() {
+            const selectedProducts = [];
+            const checkboxes = document.querySelectorAll('.productCheckbox:checked');
+            checkboxes.forEach(checkbox => {
+                selectedProducts.push(checkbox.value);  // 상품번호를 수집
+            });
+
+            if (selectedProducts.length > 0) {
+                if (confirm("정말로 선택한 상품을 삭제하시겠습니까?")) {
+                    // 선택된 상품번호를 폼 데이터로 추가
+                    const form = document.createElement('form');
+                    form.method = 'POST';  // POST 방식
+                    form.action = '/farmstory/market/delete';  // 서버의 삭제 요청을 처리하는 URL
+
+                    selectedProducts.forEach(prodNo => {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'prodNo';
+                        input.value = prodNo;
+                        form.appendChild(input);
+                    });
+
+                    document.body.appendChild(form);
+                    form.submit();  // 폼 제출
+                }
+            } else {
+                alert("삭제할 상품을 선택하세요.");
+            }
+        }
+        function updateSelected() {
+            const selectedProducts = [];
+            const checkboxes = document.querySelectorAll('.productCheckbox:checked');
+            checkboxes.forEach(checkbox => {
+                selectedProducts.push(checkbox.value);  // 상품번호를 수집
+            });
+
+            if (selectedProducts.length > 0) {
+                if (selectedProducts.length === 1) { // 한 개의 상품만 선택된 경우
+                    const prodNo = selectedProducts[0];
+                    window.location.href = '/farmstory/admin/product/modify?prodNo=' + prodNo;  // 수정 페이지로 이동
+                } else {
+                    alert("수정은 한 번에 하나의 상품만 가능합니다.");
+                }
+            } else {
+                alert("수정할 상품을 선택하세요.");
+            }
+        }
+    </script>
+
+</head>
+<body>
+<!-- wrapper -->
+    <th:block th:insert="~{/admin/include/header.html}"/>
+    <main>
+        <div class="mainIn list">
+            <th:block th:insert="~{/admin/include/aside.html}"/>
+            <div class="section list">
+                <section>
+                    <div class="main_container">
+                        <div class="main_top"><span>상품목록</span></div>
+                        <div class="status_table" id="productList">
+                            <table class="product">
+                                <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="checkAll" onclick="toggleCheckboxes(this)"></th> <!-- 토글 체크박스 -->
+                                    <th>사진</th>
+                                    <th>상품번호</th>
+                                    <th>상품명</th>
+                                    <th>구분</th>
+                                    <th>가격</th>
+                                    <th>재고</th>
+                                    <th>등록일</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr th:each="product : ${products}">
+                                    <td><input type="checkbox" class="productCheckbox" th:value="${product.prodNo}"></td> <!-- 개별 체크박스 -->
+                                    <td><img th:src="@{'/productImg/' + ${product.img1}}" id="product_img1" alt="샘플 이미지"></td>
+                                    <td>[[${product.prodNo}]]</td>
+                                    <td><a th:href="@{'/market/view?prodNo=' + ${product.prodNo}}">[[${product.prodName}]]</a></td>
+                                    <td>[[${product.type}]]</td>
+                                    <td>[[${product.price}]]</td>
+                                    <td>[[${product.stock}]]</td>
+                                    <td>[[${product.regdate}]]</td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                            <div class="btn_group">
+                                <a href="#" class="deletebtn" onclick="deleteSelected()">선택삭제</a> <!-- 선택삭제 버튼 -->
+                                <a href="#" class="deletebtn" onclick="updateSelected()">선택수정</a>
+                                <a th:href="@{/admin/product/register}" class="insertbtn">상품등록</a>
+                            </div><!--btn_group end-->
+
+                            <div class="pages">
+                                <ul>
+                                    <li><a href="#">&nbsp;[1]</a></li>
+                                    <li><a href="#">[2]</a></li>
+                                    <li><a href="#">[3]</a></li>
+                                    <li><a href="#">[4]</a></li>
+                                    <li><a href="#">[5]&nbsp;</a></li>
+                                </ul>
+                            </div>
+                        </div><!--status-table end-->
+                    </div><!--main-container-->
+                </section><!-- section end-->
+            </div><!-- .section end-->
+        </div><!--mainIn-->
+    </main><!--main end-->
+
+    <th:block th:insert="~{/admin/include/footer.html}"/>
+</div> <!--wrapper end-->
+</body>
+</html>

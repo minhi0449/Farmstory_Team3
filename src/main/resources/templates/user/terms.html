@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" th:href="@{images/fav.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/user/terms.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms</title>
+    <!-- 
+        작업내용 
+        2024/08/26  하진희 terms html, css update
+    -->
+</head>
+<body>
+    <div id="wrapper">
+
+        <th:block th:include ="~{/include/header.html}"/>
+
+        <!-- main -->
+        <main>
+            <div class="mainIn">
+                <section class="terms">
+                    <table>
+                        <caption>사이트 이용약관</caption>
+                        <tr>
+                            <td>
+                                <!-- 약관내용 -->
+                                <textarea th:text="${terms.termName}" readonly></textarea>
+                                <p>
+                                    <label><input type="checkbox" name="chk1"/>동의합니다.</label>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <caption>개인정보 취급방침</caption>
+                        <tr>
+                            <td>
+                                <!-- 개인정보 내용 -->
+                                <textarea th:text="${terms.termContent}" readonly></textarea>
+                                <p>
+                                    <label><input type="checkbox" name="chk2"/>&nbsp;동의합니다.</label>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a th:href="@{/user/login}" class="btn btnCancel">취소</a>
+                        <a th:href="@{/user/register}" class="btn btnNext">다음</a>
+                    </div>
+                </section>
+            </div><!--mainIn-->
+        </main><!-- main end -->
+
+        <th:block th:insert ="~{/include/footer.html}"/>
+
+    </div><!--wrapper end-->
+    
+</body>
+</html>

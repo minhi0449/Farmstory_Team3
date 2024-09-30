@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문하기</title>
+    <link rel="shortcut icon" href="../images/fav.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/order.css">
+    <script>
+        let totalItems = 0;
+        let totalPrice = 0;
+        let totalDiscount = 0;
+        let totalDeliveryfee = 0;
+        let totalPoints = 0;
+        let totalOrderAmount = 0;
+
+        window.onload = function () {
+            this.saveSampleData();
+
+            const receiverInput = document.querySelector(".receiver");
+            const receiverHpInput = document.querySelector(".receiverHp");
+            const pointInput = document.querySelector(".point");
+            const zipInput = document.querySelector(".zip");
+            const addr1Input = document.querySelector(".addr1");
+            const addr2Input = document.querySelector(".addr2");
+            const etcInput = document.querySelector(".etc");
+
+
+            const cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
+
+            // 주문하기 페이지로 이동 시 저장된 데이터로 테이블 업데이트
+            updateOrderTable(cartItems);
+
+            const orderBtn = document.querySelector(".btn_order");
+
+            orderBtn.addEventListener("click", onClickOrderBtn())
+
+            function onClickOrderBtn() {
+                return async (e) => {
+                    const point = pointInput.value;
+                    const receiver = receiverInput.value;
+                    const receiverHp = receiverHpInput.value;
+                    const zip = zipInput.value;
+                    const addr1 = addr1Input.value;
+                    const addr2 = addr2Input.value;
+                    const payMethod = getPaymentMethodValue();
+                    const etc = etcInput.value;
+
+                    e.preventDefault();
+                    if (confirm('정말 구매하시겠습니까?')) {
+                        try {
+                            const response = await fetch("/farmstory/api/order", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json; charset=utf-8',
+                                },
+                                body: JSON.stringify(
+                                    {
+                                        point,
+                                        receiver,
+                                        receiverHp,
+                                        zip,
+                                        addr1,
+                                        addr2,
+                                        payMethod,
+                                        etc,
+                                        // TODO: uid,
+                                        orderItems: transformCartItems(cartItems)
+                                    }
+                                )
+                            })
+
+                            if (!response.ok) {
+                                const errorData = await response.json();
+                                throw new Error(errorData.message);
+                            }
+
+                            location.href = "/farmstory/market/list";
+                        } catch (e) {
+                            alert("주문을 실패했습니다.")
+                            console.error(e.message)
+                        }
+
+                    }
+                };
+            }
+        }
+
+        function saveSampleData() {
+            // 예를 들어, 사용자가 장바구니에 아이템을 추가하면 다음과 같이 아이템의 전체 데이터를 저장합니다.
+            const cartItems = [
+                {
+                    id: 1,
+                    prodName: "사과",
+                    type: "과일",
+                    price: 10000,
+                    discount: 10,
+                    deliveryfee: 1000,
+                    stock: 1,
+                    img1: "market_item1.jpg",
+                    img2: "img2",
+                    img3: "img3",
+                    quantity: 2,
+                    productId: 22
+                },
+                {
+                    id: 2,
+                    prodName: "바나나",
+                    type: "과일",
+                    price: 20000,
+                    discount: 20,
+                    deliveryfee: 2000,
+                    stock: 2,
+                    img1: "market_item1.jpg",
+                    img2: "img2",
+                    img3: "img3",
+                    quantity: 1,
+                    productId: 24
+                }
+            ];
+
+            // sessionStorage에 장바구니 데이터 저장 (객체를 JSON 문자열로 변환하여 저장)
+            sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+        function updateOrderTable(items) {
+            const table = document.querySelector('.tb1');
+            table.innerHTML = `
+        <colgroup>
+            <col style="width: 10%">
+            <col style="width: 12%">
+            <col style="width: 28%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+            <col style="width: 10%">
+        </colgroup>
+        <tr>
+            <th>이미지</th>
+            <th>종류</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>할인</th>
+            <th>포인트</th>
+            <th>가격</th>
+            <th>소계</th>
+        </tr>`;
+
+
+            items.forEach(item => {
+                const quantity = item.quantity || 1;
+
+                const tr = document.createElement('tr');
+
+                // 필요한 필드를 사용하여 렌더링
+                const subtotal = item.price * quantity - (item.price * item.discount / 100) * quantity;
+                const points = item.price * 0.01 * quantity; // 포인트 계산 (가격의 1%)
+
+                totalItems += quantity;
+                totalPrice += item.price * quantity;
+                totalDiscount += (item.price * item.discount / 100) * quantity;
+                totalDeliveryfee += item.deliveryfee;
+                totalPoints += points;
+
+                tr.innerHTML = `
+            <td><img src="../images/${item.img1}" alt="${item.prodName}" /></td>
+            <td>${item.type}</td>
+            <td>${item.prodName}</td>
+            <td>${quantity}</td> <!-- 수량을 클라이언트에서 사용 -->
+            <td>${item.discount}%</td>
+            <td>${points.toLocaleString()}p</td> <!-- 포인트를 5%로 계산 -->
+            <td>${item.price.toLocaleString()}</td>
+            <td><strong>${subtotal.toLocaleString()}</strong>원</td>
+        `;
+
+                table.appendChild(tr);
+            });
+
+            // 주문 요약 정보 업데이트
+            document.querySelector('.tb2 tr:nth-child(2) td:nth-child(2)').textContent = totalItems; // 상품수
+            document.querySelector('.tb2 tr:nth-child(3) td:nth-child(2)').textContent = `${totalPrice.toLocaleString()}원`; // 상품금액
+            document.querySelector('.tb2 tr:nth-child(4) td:nth-child(2)').textContent = `${totalDiscount.toLocaleString()}원`; // 할인금액
+            document.querySelector('.tb2 tr:nth-child(5) td:nth-child(2)').textContent = `${totalDeliveryfee.toLocaleString()}원`; // 배송비
+            document.querySelector('.tb2 tr:nth-child(6) td:nth-child(2)').textContent = `${totalPoints.toLocaleString()}원`; // 포인트
+            totalOrderAmount = totalPrice - totalDiscount + totalDeliveryfee;
+            document.querySelector('.tb2 tr:nth-child(7) td:nth-child(2)').textContent = `${totalOrderAmount.toLocaleString()}원`; // 전체주문금액
+        }
+
+        function getPaymentMethodValue() {
+            // 클래스가 'payment-method'인 모든 체크박스 요소 선택
+            const checkboxes = document.querySelectorAll('input.paymentMethod');
+            const selectedValues = [];
+
+            // 각 체크박스를 순회하면서, 선택된 체크박스의 value를 수집
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedValues.push(checkbox.value);
+                }
+            });
+
+            return selectedValues[0];
+        }
+
+        function transformCartItems(cartItems) {
+            return cartItems.map(item => {
+                return {
+                    price: item.price,            // 기존 price 그대로 사용
+                    point: item.price * 0.1,      // 예시로 포인트는 가격의 10%로 설정
+                    discount: item.discount,      // 기존 discount 그대로 사용
+                    deliveryfee: item.deliveryfee,// 기존 deliveryfee 그대로 사용
+                    count: item.quantity,         // quantity를 count로 사용
+                    productId: item.productId            // id를 productId로 사용
+                };
+            });
+        }
+    </script>
+</head>
+<body>
+<!-- #header -->
+<th:block th:include="./include/header.html"/>
+
+<!-- #main -->
+<main id="main" class="cf">
+    <section class="mainIn cf">
+        <div class="sub_bg">
+            <img src="../images/sub_top_tit2.png" alt="MARKET" class="sub_tit">
+        </div><!-- .sub_bg -->
+        <aside class="aside">
+            <div class="sidebar">
+                <div class="aside_cate">
+                    <img src="../images/sub_aside_cate2_tit.png" alt="Buying in the Market 장보기">
+                </div><!-- .aside_cate -->
+                <div class="aside_bg">
+                    <ul class="cate_lnb">
+                        <li><a href="#">장보기</a></li>
+                    </ul><!-- .cate_lnb -->
+                </div><!-- .aside_bg -->
+            </div><!-- .sidebar -->
+        </aside><!-- .aside -->
+        <article class="article">
+            <div class="articleIn cf">
+                <nav>
+                    <h2><img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기"></h2>
+                    <p class="location">
+                        <img src="../images/sub_page_nav_ico.gif" alt="메뉴">
+                        <span>HOME </span>
+                        <span>장보기 </span>
+                        <strong>장보기</strong>
+                    </p><!-- .location -->
+                </nav>
+
+                <h3 class="tb_tit">주문상춤 전체(10)</h3><!-- .tb_tit -->
+                <table class="tb1">
+                    <colgroup>
+                        <col style="width: 10%">
+                        <col style="width: 12%">
+                        <col style="width: 28%">
+                        <col style="width: 10%">
+                        <col style="width: 10%">
+                        <col style="width: 10%">
+                        <col style="width: 10%">
+                        <col style="width: 10%">
+                    </colgroup>
+                    <tr>
+                        <th>이미지</th>
+                        <th>종류</th>
+                        <th>상품명</th>
+                        <th>수량</th>
+                        <th>할인</th>
+                        <th>포인트</th>
+                        <th>가격</th>
+                        <th>소계</th>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/market_item1.jpg" alt="사과 샘플"/></td>
+                        <td>과일</td>
+                        <td>사과 500g</td>
+                        <td>1</td>
+                        <td>10%</td>
+                        <td>40p</td>
+                        <td>4,000</td>
+                        <td><strong>3,600</strong>원</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/market_item1.jpg" alt="사과 샘플"/></td>
+                        <td>과일</td>
+                        <td>사과 500g</td>
+                        <td>1</td>
+                        <td>10%</td>
+                        <td>40p</td>
+                        <td>4,000</td>
+                        <td><strong>3,600</strong>원</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/market_item1.jpg" alt="사과 샘플"/></td>
+                        <td>과일</td>
+                        <td>사과 500g</td>
+                        <td>1</td>
+                        <td>10%</td>
+                        <td>40p</td>
+                        <td>4,000</td>
+                        <td><strong>3,600</strong>원</td>
+                    </tr>
+                </table><!-- .tb1 -->
+
+
+                <div class="order_info cf">
+                    <h4 class="order_tit">주문정보 입력</h4>
+                    <table class="order_tb cf">
+                        <colgroup>
+                            <col style="width: 23.52%">
+                            <col style="width: 76.48%">
+                        </colgroup>
+                        <tr>
+                            <th>주문자</th>
+                            <td>
+                                <input type="text" class="uid" placeholder="홍길동">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>휴대폰</th>
+                            <td>
+                                <input type="text" class="hp" placeholder="010-1234-1001">
+                            </td>
+                        </tr>
+                        <tr class="use cf">
+                            <th>포인트사용</th>
+                            <td class="use_point cf">
+                                <input type="text" class="point" placeholder="">
+                                <a href="#" class="point_btn">사용하기</a><br>
+                                <div>사용가능 2,000</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>받는분</th>
+                            <td><input type="text" class="receiver" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <th>연락처</th>
+                            <td><input type="text" class="receiverHp" placeholder=""></td>
+                        </tr>
+                        <tr>
+                            <th class="delivery_addr">배송주소</th>
+                            <td class="cf">
+                                <input type="text" class="zip" placeholder="" title="우편번호 검색칸">
+                                <a href="#"><img src="../images/btn_post_search.gif" alt="우편번호 검색" class="post_sch_btn"></a>
+                                <input type="text" class="addr1" placeholder="기본주소 검색">
+                                <input type="text" class="addr2" placeholder="상세주소 입력">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>결제방법</th>
+                            <td>
+                                <label>
+                                    <input name="paymentMethod" type="radio" class="paymentMethod" value="BANK_TRANSFER" checked>
+                                    계좌이체
+                                </label>
+                                <label>
+                                    <input name="paymentMethod" type="radio" class="paymentMethod" value="CREDIT_CARD">
+                                    신용카드
+                                </label>
+                                <label>
+                                    <input name="paymentMethod" type="radio" class="paymentMethod" value="DEBIT_CARD">
+                                    체크카드
+                                </label>
+                                <label>
+                                    <input name="paymentMethod" type="radio" class="paymentMethod" value="MOBILE_PAYMENT">
+                                    휴대폰
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>기타</th>
+                            <td><input type="textarea" class="etc" placeholder=""></td>
+                        </tr>
+                    </table>
+                </div> <!-- .order_info -->
+
+                <div class="order_final cf">
+                    <table class="tb2">
+                        <tr>
+                            <th colspan="2">전체합계</th>
+                        </tr>
+                        <tr>
+                            <td>상품수</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>상품금액</td>
+                            <td>27,000</td>
+                        </tr>
+                        <tr>
+                            <td>할인금액</td>
+                            <td>5,0000원</td>
+                        </tr>
+                        <tr>
+                            <td>배송비</td>
+                            <td>5,0000원</td>
+                        </tr>
+                        <tr>
+                            <td>포인트</td>
+                            <td>4,000원</td>
+                        </tr>
+                        <tr>
+                            <td>전체주문금액</td>
+                            <td>22,000</td>
+                        </tr>
+                    </table><!-- .tb2 -->
+                    <button class="btn_order">주문하기</button>
+                </div><!-- .order_final -->
+
+            </div><!-- .articleIn -->
+        </article><!-- .article -->
+    </section>
+</main><!-- #main -->
+
+<footer id="footer">
+    <div class="footerIn cf">
+        <img src="../images/footer_logo.png" alt="farmStory footer" class="flogo">
+        <div class="finfo">
+            <span class="tel">(주)팜스토리 / 사업자등록번호 123-45-67890 / 통신판매업신고 제 2013-팜스토리구-123호 / 벤처기업확인 서울지방중소기업청 제 012345678-9-01234호<br>
+                등록번호 팜스토리01234 (2013.04.01) / 발행인 : 홍길동 <br>
+                대표 : 홍길동 / 이메일 : email@mail.mail / 전화 : 01&#41; 234-5678 / 경기도 성남시 잘한다구 신난다동 345
+            </span><!-- .tel -->
+            <p class="fcopy">Copyright(C)홍길동 All rights reserved.</p><!-- .fcopy -->
+        </div><!-- .finfo -->
+    </div><!-- .footerIn -->
+</footer><!-- footer -->
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style_prodReg.css}">
+    <title>PRODUCT::Register</title>
+    <script>
+    // 선택된 파일의 이름 뜨는 코드
+    function updateFileName(input, fileNameId) {
+        const fileNameDisplay = document.getElementById(fileNameId);
+        if (input.files.length > 0) {
+            fileNameDisplay.textContent = input.files[0].name; // 선택된 파일 이름 업데이트
+        } else {
+            fileNameDisplay.textContent = 'No file chosen'; // 파일이 선택되지 않은 경우
+        }
+    }
+
+    </script>
+</head>
+<body>
+<!-- wrapper -->
+<div id="wrapper">
+    <th:block th:insert ="~{/admin/include/header.html}"/>
+
+    <main>
+        <div class="mainIn register">
+            <th:block th:insert ="~{/admin/include/aside.html}"/>
+            <div class="section list">
+                <section>
+                    <form th:action="@{/admin/product/register}" method="post" enctype="multipart/form-data">
+                        <div class="main_container">
+                            <div class="main_top"><h2>상품등록</h2></div>
+                            <div class="reg_table">
+                                <table id="product">
+                                    <input type="text" name="uid" value="farmstory" readonly>
+                                    <tr>
+                                        <th>상품명</th>
+                                        <td><input type="text" name="prodName"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>종류</th>
+                                        <td>
+                                            <select name="type" id="type" >
+                                                <option value="type">종류</option>
+                                                <option value="과자">과자</option>
+                                                <option value="과일">과일</option>
+                                                <option value="채소">채소</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>가격</th>
+                                        <td><input type="number" name="price" step="100"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>포인트</th>
+                                        <td>
+                                            <select name="point" id="point">
+                                                <option value="1">1%</option>
+                                                <option value="3">3%</option>
+                                                <option value="5">5%</option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>할인율</th>
+                                         <td><input type="number" id ="discountrate" name="discount" min="0" max="100"/>&nbsp;%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>배송비</th>
+                                        <td>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check2" value="2000" th:checked="${deliveryfee == 2000}"/> 2000원
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check3" value="3000" th:checked="${deliveryfee == 3000}"/> 3000원
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check4"  value="5000" th:checked="${deliveryfee == 5000}"/> 5000원
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="deliveryfee" id="check1" value="0" th:checked="${deliveryfee == 0}"/> 무료
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>무료배송조건</th>
+                                        <td>
+                                            <select name="etc" id="condition" >
+                                                <option value="condition">무료 배송 조건</option>
+                                                <option value="30000">3만원 이상 무료배송</option>
+                                                <option value="50000">5만원 이상 무료배송</option>
+                                                <option value="70000">10만원 이상 무료배송</option>
+                                            </select>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>재고</th>
+                                        <td><input type="number" name="stock" /></td>
+                                    </tr>
+                                    <tr class="file_upload_tr">
+                                        <th>상품이미지</th>
+                                        <td>
+                                            <div class="file_upload_form">
+                                                <div class="file_group">
+                                                    <label for="product_list_image">상품목록 이미지(약 120 × 120)</label>
+                                                    <div class="cf_input">
+                                                        <input type="file" class="ci" id="product_list_image" name="images" onchange="updateFileName(this, 'fileName1')"> <!--name을 똑같이 -->
+                                                        <span>Choose File</span><p id="fileName1"> No file chosen&nbsp;</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="file_group">
+                                                    <label for="basic_info_image">기본정보 이미지(약 240 × 240)</label>
+                                                    <div class="cf_input">
+                                                        <input type="file" id="basic_info_image" name="images" onchange="updateFileName(this, 'fileName2')" >
+                                                        <span>Choose File</span><p id="fileName2">No file chosen</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="file_group">
+                                                    <label for="product_description_image">상품설명 이미지(약 750 × Auto)</label>
+                                                    <div class="cf_input">
+                                                        <input type="file" id="product_description_image" name="images" onchange="updateFileName(this, 'fileName3')">
+                                                        <span>Choose File</span><p id="fileName3">No file chosen</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <div class="btn_group_register">
+                                    <button type="submit" class ="insertbtn">상품등록</button>
+                                    <a th:href="@{/admin/product/list}" class="cancelbtn">취소</a>
+                                </div><!--btn_group end-->
+                            </div><!--status-table end-->
+                        </div><!--main-container-->
+                    </form><!-- form end-->
+                </section><!-- section end-->
+            </div><!-- .section end-->
+        </div><!--mainIn-->
+    </main><!--main end-->
+
+    <th:block th:insert ="~{/admin/include/footer.html}"/>
+</div> <!--wrapper end-->
+</body>
+</html>
