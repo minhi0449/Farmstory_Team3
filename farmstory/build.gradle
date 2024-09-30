@@ -6,7 +6,7 @@ plugins {
 
 
 group = 'com.farmstory'
-version = '0.0.5-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 
 processResources {
     filesMatching('**/application.properties'){
