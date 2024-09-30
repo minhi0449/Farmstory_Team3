@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -36,6 +37,8 @@ public class UserController {
 //        return "redirect:/user/login";
 //    }
 
+
+    // 로그인
     @PostMapping("/user/login")
     public String login(HttpServletRequest req, @RequestParam("uid") String uid, @RequestParam("pass") String pass, Model model) {
         log.info("Login attempt: uid = " + uid);
@@ -52,9 +55,22 @@ public class UserController {
         } else {
             // 로그인 실패 시 에러 메시지와 함께 로그인 페이지로 이동
             model.addAttribute("loginError", "아이디 또는 비밀번호가 잘못되었습니다.");
-            return "/user/login";
+            return "/user/login?loginError=103";
         }
     }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션 무효화
+        session.invalidate();
+
+        // 성공적으로 로그아웃되었다는 메시지를 리다이렉트 속성에 추가
+        redirectAttributes.addFlashAttribute("success", 101);
+
+        // 메인 페이지 또는 로그인 페이지로 리다이렉트
+        return "redirect:/"; // 리다이렉트할 페이지로 이동
+    }
+
 
     // Terms
     @GetMapping("/user/terms")

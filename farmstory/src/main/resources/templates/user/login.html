@@ -10,6 +10,25 @@
     <link rel="stylesheet" th:href="@{/css/footer.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script>
+
+        const success= '${success}';
+        console.log('success : ' + success);
+        const loginError = '${loginError}'; // 서버에서 전달된 loginError 메시지
+        console.log('loginError : ' + loginError);
+
+        if(success==100){
+            console.log('success : ' + success);
+            alert('로그인에 실패했습니다.\n다시 시도해주세요');
+        }else if(success==101) {
+            alert('성공적으로 로그아웃 되었습니다.');
+        }
+
+        if (loginError==103) {
+            alert('아이디 또는 비밀번호가 잘못되었습니다.'); // "아이디 또는 비밀번호가 잘못되었습니다." 메시지 출력
+        }
+
+    </script>
     <!-- 
         작업내용 
         2024/08/26  하진희 login html, css update
