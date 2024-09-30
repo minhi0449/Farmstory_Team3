@@ -12,6 +12,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,13 +31,21 @@ public class UserService {
     private final TermsRepository termsRepository;
     private final JavaMailSender javaMailSender;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
     // user
-    public void insertUser(UserDTO userDTO) {
+//    public void insertUser(UserDTO userDTO) {
+//
+//        String encoded = passwordEncoder.encode(userDTO.getPass());
+//        userDTO.setPass(encoded);
+//        userRepository.save(userDTO.toEntity());
+//    }
 
+    public void insertUser(UserDTO userDTO){
+        log.info("userDTO : " + userDTO);
         String encoded = passwordEncoder.encode(userDTO.getPass());
         userDTO.setPass(encoded);
-        userRepository.save(userDTO.toEntity());
+        userRepository.save(modelMapper.map(userDTO, User.class));
     }
 
     public UserDTO loginUser(UserDTO userDTO) {
@@ -132,5 +141,29 @@ public class UserService {
         }
     }
 
+
+    /**
+     * 로그인 로직
+     * @param uid 사용자 아이디
+     * @param pass 사용자 비밀번호
+     * @return UserDTO (성공 시) 또는 null (실패 시)
+     */
+    public UserDTO login(String uid, String pass) {
+        // uid로 사용자 조회
+        User user = userRepository.findByUid(uid);
+
+        if (user != null) {
+            // 비밀번호 검증
+            if (passwordEncoder.matches(pass, user.getPass())) {
+                log.info("로그인 성공 - uid: " + uid);
+                return modelMapper.map(user, UserDTO.class); // User 엔티티를 UserDTO로 변환하여 반환
+            } else {
+                log.warn("비밀번호 불일치 - uid: " + uid);
+            }
+        } else {
+            log.warn("존재하지 않는 사용자 - uid: " + uid);
+        }
+        return null; // 로그인 실패 시 null 반환
+    }
 
 }

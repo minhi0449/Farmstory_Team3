@@ -39,6 +39,10 @@
     text-indent: 6px;
 }
 
+/* 이메일 인증 코드 발송 시 보이는 확인코드 입력 창 */
+.register .auth {display: none; margin-top: 6px;}
+
+/* 주소 */
 .register table input[name=addr1] {
     display: block;
     width: 360px;
@@ -55,3 +59,7 @@
 .register > form > div {
     float: right;
 }
+/* btn -  취소, 회원가입 */
+.btn {display: block; float:left; box-sizing: border-box; height: 35px; line-height: 35px; text-align: center; border: 1px solid #bebebe; background: #fff;}
+.btnCancel {width: 42px;}
+.btnSubmit {width: 62px; margin-left: 3px; cursor: pointer; background: #efefef;}

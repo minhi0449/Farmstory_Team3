@@ -22,7 +22,7 @@
         const resultUid = document.getElementById('resultUid');
         const btnCheckUid = document.getElementById('btnCheckUid');
 
-        btnCheckUid.onclick = function() {
+        btnCheckUid.onclick = function(){
             const type    = this.dataset.type;
             const value   = inputUids[0].value;
             console.log('type : ' + type + ', value : ' + value);
@@ -61,7 +61,6 @@
                     showResultValid(resultPass, '사용 가능한 비밀번호 입니다.');
                     isPassOk = true;
                 }
-
             }else{
                 showResultInvalid(resultPass, '비밀번호가 일치하지 않습니다.');
                 isPassOk = false;

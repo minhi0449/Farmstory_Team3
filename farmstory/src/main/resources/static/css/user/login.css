@@ -54,5 +54,6 @@
 }
 
 .login > div > a {
+    text-align: left;
     float: right;
 }

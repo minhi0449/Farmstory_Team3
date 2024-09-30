@@ -29,17 +29,39 @@ public class UserController {
         return "/user/login";
     }
 
+//    @PostMapping("/user/login")
+//    public String login(UserDTO userDTO, Model model) {
+//        UserDTO user = userService.loginUser(userDTO);
+//        model.addAttribute("user", user);
+//        return "redirect:/user/login";
+//    }
+
     @PostMapping("/user/login")
-    public String login(UserDTO userDTO, Model model) {
-        UserDTO user = userService.loginUser(userDTO);
-        model.addAttribute("user", user);
-        return "redirect:/user/login";
+    public String login(HttpServletRequest req, @RequestParam("uid") String uid, @RequestParam("pass") String pass, Model model) {
+        log.info("Login attempt: uid = " + uid);
+
+        // UserService를 통해 로그인 처리
+        UserDTO user = userService.login(uid, pass);
+
+        if (user != null) {
+            // 로그인 성공: 세션에 사용자 정보 저장
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+            log.info("Login successful: " + user.getUid());
+            return "redirect:/"; // 로그인 후 리다이렉트할 페이지
+        } else {
+            // 로그인 실패 시 에러 메시지와 함께 로그인 페이지로 이동
+            model.addAttribute("loginError", "아이디 또는 비밀번호가 잘못되었습니다.");
+            return "/user/login";
+        }
     }
 
     // Terms
     @GetMapping("/user/terms")
-    public String terms(){
-
+    public String terms(Model model) {
+        TermsDTO termsDTO = userService.selectTerms();
+        log.info(termsDTO);
+        model.addAttribute("terms", termsDTO);
         return "/user/terms";
     }
 
@@ -51,13 +73,15 @@ public class UserController {
     @PostMapping("/user/register")
     public String register(HttpServletRequest req, UserDTO userDTO) {
         log.info(userDTO.toString());
-        if(userDTO == null){
-            return "/user/register?success=202";
-        }
+
+//        if(userDTO == null){
+//            return "/user/register?success=202";
+//        }
+
         String regip= req.getRemoteAddr();
         userDTO.setRegip(regip);
 
-        // UserDTO savedUser = userService.insertUser(userDTO);
+        userService.insertUser(userDTO);
 
         return "redirect:/user/login?success=200";
     }

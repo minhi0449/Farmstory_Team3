@@ -37,4 +37,6 @@ public class ArticleController {
         return "/event/event";
     }
 
+
+
 }

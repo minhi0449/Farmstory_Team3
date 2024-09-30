@@ -42,3 +42,7 @@
     float: right;
     margin-top: 10px;
 }
+
+/* btn - 취소, 다음*/
+.btn {display: block; float:left; width: 42px; height: 35px; line-height: 35px; text-align: center; border: 1px solid #bebebe; background: #fff;}
+.btnNext {margin-left: 3px;}

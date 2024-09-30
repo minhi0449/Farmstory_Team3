@@ -18,12 +18,11 @@
 <body>
     <div id="wrapper">
 
-        <th:block th:include ="~{include/header.html}"/>
-
+        <th:block th:include ="/include/header.html"/>
         <main>
             <div class="mainIn">
                 <section class="login">
-                    <form action="#">
+                    <form th:action="@{/user/login}" method="post" name="loginForm">
                         <table border="0">
                             <tr>
                                 <td><img th:src="@{/images/login_ico_id.png}" alt="아이디"></td>
@@ -41,7 +40,9 @@
                         <p>
                             아직 회원이 아니시면 회원으로 가입하세요.
                         </p>
-                        <a th:href="@{/user/terms}">회원가입</a>
+                        <a th:href="@{/user/terms}">&nbsp;회원가입</a>
+                        <a th:href="@{/user/findPass}">&nbsp;비밀번호 찾기&nbsp;|&nbsp;</a>
+                        <a th:href="@{/user/findId}">아이디 찾기&nbsp;|&nbsp;</a>
                     </div>
                 </section>
             </div><!--mainIn-->

@@ -9,9 +9,9 @@
     <link rel="stylesheet" th:href="@{/css/footer.css}">
     <link rel="stylesheet" th:href="@{/css/user/register.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script th:src="@{/js/utils.js}"></script>
     <script th:src="@{/js/validation.js}"></script>
+    <script th:src="@{/js/util.js}"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <title>Register</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
                             <tr>
                                 <td>비밀번호</td>
                                 <td>
-                                    <input type="password" name="pass1" class="inputPass" placeholder="비밀번호 입력"/>
+                                    <input type="password" name="pass" class="inputPass" placeholder="비밀번호 입력"/>
                                 </td>
                             </tr>
                             <tr>
@@ -58,10 +58,10 @@
                             <tr>
                                 <td>별명</td>
                                 <td>
-                                    <p>공백없이 한글, 영문, 숫자만 입력가능</p>
-                                    <input type="text" name="nick" placeholder="별명 입력"/>
+                                    <p class="nickInfo">공백없이 한글, 영문, 숫자만 입력가능</p>
+                                    <input type="text" name="nick" class="inputNick" placeholder="별명 입력"/>
                                     <button type="button" id="btnCheckNick" data-type="nick"><img th:src="@{/images/chk_id.gif}" alt="중복확인"/></button>
-                                    <span class="resultNick"></span>
+                                    <span id="resultNick" class="resultNick"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -79,7 +79,7 @@
                             <tr>
                                 <td>휴대폰</td>
                                 <td>
-                                    <input type="text" name="hp" placeholder="- 포함 13자리 입력" minlength="13" maxlength="13" />
+                                    <input type="text" name="hp" class="inputHp" placeholder="- 포함 13자리 입력" minlength="13" maxlength="13" />
                                     <button type="button" id="btnCheckHp" data-type="hp"><img th:src="@{/images/chk_id.gif}" alt="중복확인"/></button>
                                     <span id="resultHp"></span>
                                 </td>
@@ -87,23 +87,17 @@
                             <tr>
                                 <td>주소</td>
                                 <td>
-                                    <div>
-                                        <input type="text" name="zip" id="inputZip" placeholder="우편번호" readonly/>
-                                        <button type="button" id="btnZip" class="btnZip"><img th:src="@{/images/chk_post.gif}" alt="우편번호"></button>
-                                    </div>                            
-                                    <div>
-                                        <input type="text" name="addr1" id="inputAddr1" placeholder="주소를 검색하세요." readonly/>
-                                    </div>
-                                    <div>
-                                        <input type="text" name="addr2" id="inputAddr2" placeholder="상세주소를 입력하세요."/>
-                                    </div>
+                                    <input type="text" name="zip" id="inputZip" placeholder="우편번호" readonly/>
+                                    <button type="button" id="btnZip" class="btnZip" onclick="postcode()"><img th:src="@{/images/chk_post.gif}" alt="우편번호"></button>
+                                    <input type="text" name="addr1" id="inputAddr1" placeholder="주소를 검색하세요." readonly/>
+                                    <input type="text" name="addr2" id="inputAddr2" placeholder="상세주소를 입력하세요."/>
                                 </td>
                             </tr>
                         </table>
         
                         <div>
-                            <a th:href="@{/user/login}" class="btnCancel">취소</a>
-                            <input type="submit" class="btnSubmit" value="회원가입"/>
+                            <a th:href="@{/user/login}" class="btn btnCancel">취소</a>
+                            <input type="submit" class="btn btnSubmit" value="회원가입"/>
                         </div>    
                     </form>
                 </section>
