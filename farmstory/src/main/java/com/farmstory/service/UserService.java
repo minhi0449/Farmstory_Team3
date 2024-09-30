@@ -1,8 +1,15 @@
 package com.farmstory.service;
 
+import com.farmstory.dto.TermsDTO;
 import com.farmstory.dto.UserDTO;
+import com.farmstory.entity.Terms;
 import com.farmstory.entity.User;
+import com.farmstory.repository.TermsRepository;
 import com.farmstory.repository.UserRepository;
+import jakarta.mail.Message;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
