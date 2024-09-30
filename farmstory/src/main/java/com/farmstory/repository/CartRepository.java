@@ -14,7 +14,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer>{
     //public Optional<Cart> findByProductProdNo(int;
 
 
-     Optional<Cart> findByProductProdNo(Integer productProdNo);
-     Boolean existsByProductId(int productId);
+    Optional<Cart> findByProductProdNo(Integer prodNo);
+    //Boolean existsByProductId(int productId);
 
 }
