@@ -4,8 +4,10 @@ import com.farmstory.dto.PageResponseDTO;
 import com.farmstory.dto.order.*;
 import com.farmstory.entity.Order;
 import com.farmstory.entity.OrderItem;
+import com.farmstory.entity.Product;
 import com.farmstory.repository.OrderItemRepository;
 import com.farmstory.repository.OrderRepository;
+import com.farmstory.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +37,9 @@ class OrderServiceTest {
 
     @Mock
     private OrderItemRepository orderItemRepository;
+
+    @Mock
+    private ProductRepository productRepository;
 
     @InjectMocks
     private OrderService orderService;
@@ -77,8 +83,10 @@ class OrderServiceTest {
     void getOrderItems_shouldReturnPagedOrderItems() {
         // Given
         Pageable pageable = PageRequest.of(0, 10);
-        List<OrderItem> orderItems = Collections.singletonList(OrderItem.builder().orderItemNo(1).build());
+        Product product = Product.builder().prodNo(1).build();
+        List<OrderItem> orderItems = Collections.singletonList(OrderItem.builder().orderItemNo(1).product(product).build());
         Page<OrderItem> page = new PageImpl<>(orderItems);
+
         when(orderItemRepository.findAll(pageable)).thenReturn(page);
 
         // When
@@ -96,7 +104,8 @@ class OrderServiceTest {
     void getOrderItemsByOrderId_shouldReturnPagedOrderItems() {
         // Given
         Pageable pageable = PageRequest.of(0, 10);
-        List<OrderItem> orderItems = Collections.singletonList(OrderItem.builder().orderItemNo(1).build());
+        Product product = Product.builder().prodNo(1).build();
+        List<OrderItem> orderItems = Collections.singletonList(OrderItem.builder().orderItemNo(1).product(product).build());
         Page<OrderItem> page = new PageImpl<>(orderItems);
         when(orderItemRepository.findByOrderNo(anyInt(), eq(pageable))).thenReturn(page);
 
@@ -114,24 +123,35 @@ class OrderServiceTest {
     @DisplayName("새로운 주문을 생성할 때, 올바른 주문 ID를 반환한다.")
     void createOrder_shouldReturnOrderId() {
         // Given
+        Product product = Product.builder()
+                .prodNo(1)
+                .build();
+
+        List<OrderItemCreateRequestDTO> orderItems = new ArrayList<>();
+
+        OrderItemCreateRequestDTO orderItem = OrderItemCreateRequestDTO.builder().productId(product.getProdNo()).build();
+        orderItems.add(orderItem);
+
         OrderCreateRequestDTO orderDTO = OrderCreateRequestDTO.builder()
-                .orderItems(Collections.singletonList(OrderItemCreateRequestDTO.builder().build()))
+                .orderItems(orderItems)
                 .build();
 
         // Mocking orderRepository.save()
         Order order = Order.builder()
                 .orderNo(1) // orderNo를 1로 설정
                 .build();
-        when(orderRepository.save(any(Order.class))).thenReturn(order);
 
-        // Mocking orderItemRepository.saveAll()
-        when(orderItemRepository.saveAll(anyList())).thenReturn(Collections.emptyList());
+        OrderItem orderItemEntity = orderItem.toEntity();
+        when(orderRepository.save(any(Order.class))).thenReturn(order);
+        when(orderItemRepository.save(any(OrderItem.class))).thenReturn(orderItemEntity);
+        when(productRepository.findById(any(Integer.class))).thenReturn(Optional.of(product));
 
         // When
         int result = orderService.createOrder(orderDTO);
 
         // Then
         verify(orderRepository, times(1)).save(any(Order.class));
-        verify(orderItemRepository, times(1)).saveAll(anyList());
+        verify(orderItemRepository, times(1)).save(any(OrderItem.class));
+        verify(productRepository, times(1)).findById(any(Integer.class));
     }
 }

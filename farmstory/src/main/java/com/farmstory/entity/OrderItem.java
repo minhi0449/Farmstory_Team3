@@ -34,4 +34,8 @@ public class OrderItem {
     public void registerOrder(Order order) {
         this.order = order;
     }
+
+    public void registerProduct(Product product) {
+        this.product = product;
+    }
 }

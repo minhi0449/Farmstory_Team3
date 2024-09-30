@@ -1,13 +1,17 @@
 package com.farmstory.repository;
 
+import com.farmstory.config.QueryDslConfig;
 import com.farmstory.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
-@SpringBootTest
+@DataJpaTest
+@Import(QueryDslConfig.class)
 public class ProductRepositoryTest {
 
     @Autowired

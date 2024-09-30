@@ -1,15 +1,8 @@
 package com.farmstory.service;
 
-import com.farmstory.dto.TermsDTO;
 import com.farmstory.dto.UserDTO;
-import com.farmstory.entity.Terms;
 import com.farmstory.entity.User;
-import com.farmstory.repository.TermsRepository;
 import com.farmstory.repository.UserRepository;
-import jakarta.mail.Message;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -48,6 +41,7 @@ public class UserService {
         userRepository.save(modelMapper.map(userDTO, User.class));
     }
 
+
     public UserDTO loginUser(UserDTO userDTO) {
         Optional<User> opt = userRepository
                 .findUserByUidAndPass(userDTO.getUid(), userDTO.getPass());
@@ -58,6 +52,17 @@ public class UserService {
         }
         return null;
     }
+
+
+    public User selectUserEntity(String uid) {
+        Optional<User> optUser = userRepository.findById(uid);
+        if(optUser.isPresent()) {
+            User user = optUser.get();
+            return user;
+        }
+        return null;
+    }
+
 
     public UserDTO selectUser(String uid) {
         Optional<User> optUser = userRepository.findById(uid);

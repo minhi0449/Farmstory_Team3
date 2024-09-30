@@ -23,7 +23,6 @@ public class OrderCreateRequestDTO {
     private PayMethod payMethod;
     private String etc;
     private String uid;
-
     @Builder.Default
     private List<OrderItemCreateRequestDTO> orderItems = new ArrayList<>();
 
@@ -40,16 +39,16 @@ public class OrderCreateRequestDTO {
                 .build();
     }
 
-    public static Order toEntity(OrderCreateRequestDTO dto) {
+    public Order toEntity() {
         return Order.builder()
-                .point(dto.getPoint())
-                .receiver(dto.getReceiver())
-                .receiverHp(dto.getReceiverHp())
-                .zip(dto.getZip())
-                .addr1(dto.getAddr1())
-                .addr2(dto.getAddr2())
-                .payMethod(dto.getPayMethod())
-                .etc(dto.getEtc())
+                .point(this.getPoint())
+                .receiver(this.getReceiver())
+                .receiverHp(this.getReceiverHp())
+                .zip(this.getZip())
+                .addr1(this.getAddr1())
+                .addr2(this.getAddr2())
+                .payMethod(this.getPayMethod())
+                .etc(this.getEtc())
                 .build();
     }
 }

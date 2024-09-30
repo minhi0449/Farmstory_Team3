@@ -9,12 +9,14 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartDTO {
+
+public class CartRequestDTO {
 
     private int cartNO;
     private int count;
-    private int product_id;
     private String uid;
+    private int product_id;
+
 
     public Cart toEntity(){
         return Cart.builder()

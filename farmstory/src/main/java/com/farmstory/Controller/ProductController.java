@@ -46,7 +46,7 @@ public class ProductController {
         return "/admin/product/list";
     }
 
-    // 상품 상세페이지
+    // 상품 보기 (상세 페이지)
     @GetMapping("/market/view")
     public String view(@RequestParam("prodNo") int prodNo, Model model) {
         ProductDTO product = productService.findProductById(prodNo);
@@ -55,6 +55,7 @@ public class ProductController {
 
         return "/market/view";
     }
+
     // 상품 목록
     @GetMapping("/market/list")
     public String list(Model model) {
@@ -65,6 +66,7 @@ public class ProductController {
 
         return "/market/list";
     }
+
     @PostMapping("/market/delete")
     public String delete(@RequestParam("prodNo") List<String> products) {
 
@@ -74,4 +76,23 @@ public class ProductController {
         return "redirect:/admin/product/list";  // 삭제 후 상품 목록으로 리다이렉트
     }
 
+    // 상품 수정
+    @GetMapping("/admin/product/modify")
+    public String modifyselect(@RequestParam("prodNo") int prodNo, Model model) {
+
+        ProductDTO product = productService.findProductById(prodNo);
+
+        model.addAttribute("product", product);
+
+        return "/admin/product/modify";
+    }
+    @PostMapping("/admin/product/modify")
+    public String modify(@RequestParam("prodNo") int prodNo, ProductDTO productDTO, MultipartFile[] images) {
+
+        productService.updateProduct(productDTO, images);
+
+        return "redirect:/admin/product/list";
+    }
 }
+
+

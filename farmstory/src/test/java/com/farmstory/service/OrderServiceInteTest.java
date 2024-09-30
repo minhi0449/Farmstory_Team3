@@ -7,9 +7,11 @@ import com.farmstory.dto.order.OrderItemCreateRequestDTO;
 import com.farmstory.dto.order.OrderItemsGetResponseDTO;
 import com.farmstory.entity.Order;
 import com.farmstory.entity.OrderItem;
+import com.farmstory.entity.Product;
 import com.farmstory.enums.PayMethod;
 import com.farmstory.repository.OrderItemRepository;
 import com.farmstory.repository.OrderRepository;
+import com.farmstory.repository.ProductRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,6 @@ import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class OrderServiceInteTest {
@@ -33,6 +34,8 @@ class OrderServiceInteTest {
     private OrderRepository orderRepository;
     @Autowired
     private OrderItemRepository orderItemRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
 
     @Test
@@ -40,7 +43,8 @@ class OrderServiceInteTest {
     @DisplayName("주문을 생성하고 데이터베이스에 저장한다.")
     void createOrder_shouldSaveOrder() {
         // Given
-        OrderCreateRequestDTO orderCreateRequestDTO = createSameDtoData();
+        OrderCreateRequestDTO orderCreateRequestDTO = createSampleDtoData();
+        productRepository.save(Product.builder().prodNo(1).stock(4).build());
 
         // When
         int orderId = orderService.createOrder(orderCreateRequestDTO);
@@ -72,6 +76,10 @@ class OrderServiceInteTest {
         assertThat(result).isNotNull();
         assertThat(result.getContent().size()).isEqualTo(1);
         assertThat(result.getTotalElements()).isEqualTo(2);
+
+        int productId = result.getContent().get(0).getProductId();
+        Product findProduct = productRepository.findById(productId);
+        assertThat(productId).isEqualTo(findProduct.getProdNo());
     }
 
     @Test
@@ -98,6 +106,10 @@ class OrderServiceInteTest {
                 .build();
         orderRepository.save(order);
 
+        Product product = Product.builder()
+                .build();
+
+        productRepository.save(product);
         OrderItem orderItem1 = OrderItem.builder()
                 .price(10000)
                 .point(100)
@@ -105,6 +117,7 @@ class OrderServiceInteTest {
                 .deliveryfee(1000)
                 .count(1)
                 .order(order)
+                .product(product)
                 .build();
 
         OrderItem orderItem2 = OrderItem.builder()
@@ -114,15 +127,19 @@ class OrderServiceInteTest {
                 .deliveryfee(2000)
                 .count(2)
                 .order(order)
+                .product(product)
                 .build();
 
         orderItemRepository.save(orderItem1);
         orderItemRepository.save(orderItem2);
 
+
+
+
         return order.getOrderNo();
     }
 
-    private OrderCreateRequestDTO createSameDtoData() {
+    private OrderCreateRequestDTO createSampleDtoData() {
         OrderCreateRequestDTO orderCreateRequestDTO = OrderCreateRequestDTO.builder()
                 .point(100)
                 .receiver("받는사람")
@@ -134,12 +151,15 @@ class OrderServiceInteTest {
                 .etc("기타")
                 .build();
 
+
+
         OrderItemCreateRequestDTO orderItem1 = OrderItemCreateRequestDTO.builder()
                 .price(10000)
                 .point(100)
                 .discount(10)
                 .deliveryfee(1000)
                 .count(1)
+                .productId(1)
                 .build();
 
         OrderItemCreateRequestDTO orderItem2 = OrderItemCreateRequestDTO.builder()
@@ -148,6 +168,7 @@ class OrderServiceInteTest {
                 .discount(20)
                 .deliveryfee(2000)
                 .count(2)
+                .productId(1)
                 .build();
 
         orderCreateRequestDTO.getOrderItems().addAll(Arrays.asList(orderItem1, orderItem2));

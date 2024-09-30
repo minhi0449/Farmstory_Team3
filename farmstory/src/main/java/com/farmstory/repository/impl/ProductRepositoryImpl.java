@@ -1,22 +1,24 @@
 package com.farmstory.repository.impl;
 
 import com.farmstory.entity.Product;
-
 import com.farmstory.entity.QProduct;
 import com.farmstory.repository.custom.ProductRepositoryCustom;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-@RequiredArgsConstructor
-public class ProductRepositoryImpl implements ProductRepositoryCustom {
-    @Autowired
+public class ProductRepositoryImpl extends QuerydslRepositorySupport implements ProductRepositoryCustom {
     private final JPAQueryFactory queryFactory;
-    private QProduct qProduct = QProduct.product;
+    private final QProduct qProduct = QProduct.product;
+
+    public ProductRepositoryImpl(JPAQueryFactory queryFactory) {
+        super(Product.class);
+        this.queryFactory = queryFactory;
+    }
 
 
     @Override
